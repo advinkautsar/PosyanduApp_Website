@@ -9,6 +9,15 @@ class Anak extends Model
 {
     use HasFactory;
     protected $table = "anak";
+    protected $fillable = [
+        'orangtua_id',
+        'no_kartu',
+        'nama_anak',
+        'jenis_kelamin',
+        'tanggal_lahir',
+        'berat_lahir',
+        'panjang_lahir',
+    ];
 
     public function orangtua()
     {

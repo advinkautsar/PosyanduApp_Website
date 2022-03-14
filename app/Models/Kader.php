@@ -9,6 +9,12 @@ class Kader extends Model
 {
     use HasFactory;
     protected $table = "kader";
+     protected $fillable = [
+        'nama',
+        'alamat',
+        'user_id',
+        'posyandu_id',
+    ];
 
     public function user()
     {

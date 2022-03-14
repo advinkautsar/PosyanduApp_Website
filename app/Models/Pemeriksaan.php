@@ -9,6 +9,22 @@ class Pemeriksaan extends Model
 {
     use HasFactory;
     protected $table = "pemeriksaan";
+     protected $fillable = [
+        'bidan_id',
+        'nik_anak',
+        'imunisasi_id_1',
+        'imunisasi_id_2',
+        'imunisasi_id_3',
+        'vitA(merah)',
+        'vitA(biru)',
+        'Fe-1',
+        'Fe-2',
+        'PMT',
+        'asi_ekslusif',
+        'oralit',
+        'obat_cacing',
+
+    ];
 
     public function anak()
     {

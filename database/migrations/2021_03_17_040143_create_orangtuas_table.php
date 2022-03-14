@@ -24,10 +24,8 @@ class CreateOrangtuasTable extends Migration
             $table->string("nik_ibu");
             $table->string("nama_ibu");
             $table->string("alamat");
-            $table->string("no_hp");
             $table->string("rt");
             $table->string("rw");
-            $table->string("kata_sandi");
             $table->foreign('user_id')->references('id')->on('user')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('posyandu_id')->references('id')->on('posyandu')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('desa_kelurahan_id')->references('id')->on('desa_kelurahan')->onDelete('cascade')->onUpdate('cascade');

@@ -9,6 +9,12 @@ class Petugas_desa extends Model
 {
     use HasFactory;
     protected $table = "petugas_desa";
+     protected $fillable = [
+        'nama',
+        'alamat',
+        'user_id',
+        'desa_kelurahan_id',
+    ];
 
     public function desa_kelurahan()
     {

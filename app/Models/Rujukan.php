@@ -9,6 +9,15 @@ class Rujukan extends Model
 {
     use HasFactory;
     protected $table = "rujukan";
+     protected $fillable = [
+        'nik_anak',
+        'bidan_id',
+        'puskesmas_id',
+        'tanggal',
+        'penyakit/masalah',
+        'tempat_pelayanan',
+        'penyakit/masalah',
+    ];
 
     public function anak()
     {

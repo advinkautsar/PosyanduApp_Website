@@ -20,8 +20,6 @@ class CreateBidansTable extends Migration
             $table->bigInteger("user_id")->unsigned()->nullable();
             $table->string("nama");
             $table->string("alamat");
-            $table->string("no_hp");
-            $table->string("kata_sandi");
             $table->foreign('puskesmas_id')->references('id')->on('puskesmas')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('posyandu_id')->references('id')->on('posyandu')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('user_id')->references('id')->on('user')->onDelete('cascade')->onUpdate('cascade');
