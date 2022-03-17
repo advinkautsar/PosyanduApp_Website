@@ -9,6 +9,7 @@ class Imunisasi extends Model
 {
     use HasFactory;
     protected $table = "imunisasi";
+    protected $fillable = ['waktu_imunisasi','jenis_imunisasi','token'];
 
 
     public function pemeriksaan()
