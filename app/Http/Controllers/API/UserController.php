@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Models\Orangtua;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -15,6 +16,8 @@ class UserController extends Controller
         
         if ($user) {
             if (password_verify($request->kata_sandi, $user->kata_sandi)) {
+                $user->token = $request->token;
+                $user->save();
                 return response()->json([
                     'succes' => 1,
                     'message' => 'Selamat Datang ' . $user->nama_pengguna,
@@ -61,6 +64,67 @@ class UserController extends Controller
             'succes' => 0,
             'message' => $pesan,
         ]);
+    }
+
+    public function ceknikortu(Request $request){
+        // $cek_nik = User::where('nik',$request->nik)->fisrt();
+        $cek_nik = Orangtua::where('nik_ibu',$request->nik)->first();
+        // $user = User::where('id',$cek_nik->user_id)->first();
+            // 'nama'=>$user->nama_pengguna,
+                // 'nohp'=>$user->no_hp,
+              
+        if($cek_nik){
+               $data = [
+                'status' => true,
+            
+                'pesan' => "Silahkan update akun anda"
+            ];
+            return response()->json($data);
+
+        }else{
+
+            $data = [
+                'status' => true,
+                
+                'pesan' => "NIK anda belum terdaftar di aplikasi"
+            ];
+            return response()->json($data);
+
+        }
+    }
+
+    public function updateakunortu(Request $request){
+        $nik = Orangtua::where('nik_ibu',$request->nik)->first();
+        $user = User::where('id',$nik->user_id)->first();
+
+        
+        if($nik){
+
+            $user->update([
+                'nama_pengguna'=>$request->nama_pengguna,
+                'kata_sandi'=>bcrypt($request->kata_sandi),
+                'no_hp'=>$request->no_hp,
+                'token'=>$request->token,
+            ]);
+            
+               $data = [
+                // 'status' => true,
+                'succes'    => 1,
+                'message'   => 'Pendaftaran pengguna berhasil',
+                'user'      => $user,
+                // 'pesan' => "Akun sudah terupdate"
+            ];
+            return response()->json($data);
+
+        }else{
+
+            $data = [
+                'status' => true,
+                'pesan' => "Gagal update akun"
+            ];
+            return response()->json($data);
+
+        }
     }
     
 }

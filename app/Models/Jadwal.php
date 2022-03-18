@@ -15,6 +15,8 @@ class Jadwal extends Model
         'tanggal_kegiatan',
         'waktu_kegiatan',
         'keterangan_kegiatan',
+        'posyandu_id',
+        'kader_id'
     ];
     
 

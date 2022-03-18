@@ -58,16 +58,16 @@ class ListController extends Controller
     }
   public function test(){
    
-        $i= Imunisasi::get();
-        $tokenList = Arr::pluck($i, 'token');
-        $token = $i[0]->token;
+        // $i= Imunisasi::get();
+        // $tokenList = Arr::pluck($i, 'token');
+        // $token = $i[0]->token;
      
   
         
-        // return $i[0]->waktu_imunisasi;
-        $notif = new Notif();
-        $notif->sendNotif($tokenList, $i[0]->jenis_imunisasi. "Pada waktu ".$i[0]->waktu_imunisasi, "Notifikasi Imunisasi" );
-        return "sukses";
+        // // return $i[0]->waktu_imunisasi;
+        // $notif = new Notif();
+        // $notif->sendNotif($tokenList, $i[0]->jenis_imunisasi. "Pada waktu ".$i[0]->waktu_imunisasi, "Notifikasi Imunisasi" );
+        // return "sukses";
     
   }
 
