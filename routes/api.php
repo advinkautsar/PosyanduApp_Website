@@ -44,3 +44,15 @@ Route::post('update-akun-ortu',[UserController::class,'updateakunortu']);
 Route::get('list-notifikasi',[NotifikasiController::class,'index']);
 Route::post('create-jadwal-posyandu',[JadwalPosyanducontroller::class,'create_jadwal_posyandu']);
 Route::post('update-kartu-anak',[NotifikasiController::class,'up_no_kartu_anak']);
+
+// CRUD Rujukan
+Route::post('tambah_datarujukan',[RujukanController::class, 'create']);
+Route::get('ambil_datarujukan',[RujukanController::class, 'read']);
+Route::put('ubah_datarujukan/{id}',[RujukanController::class, 'update']);
+Route::delete('hapus_datarujukan/{id}',[RujukanController::class, 'delete']);
+
+// CRUD Pemeriksaan Anak
+Route::post('tambah_dataPemeriksaan',[PemeriksaanController::class, 'create']);
+Route::get('ambil_dataPemeriksaan',[PemeriksaanController::class, 'read']);
+Route::put('ubah_dataPemeriksaan/{id}',[PemeriksaanController::class, 'update']);
+Route::delete('hapus_dataPemeriksaan/{id}',[PemeriksaanController::class, 'delete']);
