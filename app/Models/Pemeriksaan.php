@@ -15,7 +15,7 @@ class Pemeriksaan extends Model
         'imunisasi_id_1',
         'imunisasi_id_2',
         'imunisasi_id_3',
-        'vitA_merah)',
+        'vitA_merah',
         'vitA_biru',
         'Fe_1',
         'Fe_2',

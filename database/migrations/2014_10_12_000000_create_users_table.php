@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 class CreateUsersTable extends Migration
@@ -22,6 +23,14 @@ class CreateUsersTable extends Migration
             $table->string('token')->nullable();
             $table->timestamps();
         });
+
+        DB::table('user')->insert([
+
+            'id' =>1,
+            'role'=>'bidan',
+            'nama_pengguna' =>'bidan',
+            'kata_sandi'=> bcrypt(123),
+        ]);
     }
 
     /**
