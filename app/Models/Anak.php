@@ -36,5 +36,9 @@ class Anak extends Model
     {
         return $this->hasMany(Penimbangan::class);
     }
+    public function jadwal_imunisasis()
+    {
+        return $this->hasMany(Jadwal_Imunisasi::class);
+    }
 
 }

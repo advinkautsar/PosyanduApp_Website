@@ -42,4 +42,8 @@ class Bidan extends Model
     {
         return $this->hasMany(Pemeriksaan::class);
     }
+    public function jadwal_imunisasis()
+    {
+        return $this->hasMany(Jadwal_Imunisasi::class);
+    }
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePenimbangansTable extends Migration
+class CreateJadwalImunisasisTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,16 @@ class CreatePenimbangansTable extends Migration
      */
     public function up()
     {
-        Schema::create('penimbangan', function (Blueprint $table) {
+        Schema::create('jadwal_imunisasi', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger("bidan_id")->unsigned()->nullable();
             $table->bigInteger("nik_anak")->unsigned()->nullable();
-            $table->float("berat_badan");
-            $table->float("tinggi_badan");
-            $table->float("lingkar_kepala");
-            $table->string("status_bb_u");
-            $table->string("status_tb_u");
-            $table->string("status_lk_u");
-            $table->string("status_bb_tb");
-            $table->string("status_imt_u");
+            $table->bigInteger("imunisasi_id")->unsigned()->nullable();
+            $table->date("tanggal_imunisasi");
             $table->foreign('nik_anak')->references('nik_anak')->on('anak')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('bidan_id')->references('id')->on('bidan')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('imunisasi_id')->references('id')->on('imunisasi')->onDelete('cascade')->onUpdate('cascade');
+
             $table->timestamps();
         });
     }
@@ -36,6 +34,6 @@ class CreatePenimbangansTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('penimbangan');
+        Schema::dropIfExists('jadwal_imunisasi');
     }
 }

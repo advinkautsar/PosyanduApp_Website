@@ -32,4 +32,8 @@ class Posyandu extends Model
     {
         return $this->hasMany(Orangtua::class);
     }
+    public function rujukans()
+    {
+        return $this->hasMany(Rujukan::class);
+    }
 }

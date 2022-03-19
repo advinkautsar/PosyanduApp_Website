@@ -20,10 +20,10 @@ class CreatePemeriksaansTable extends Migration
             $table->bigInteger("imunisasi_id_1")->unsigned()->nullable();
             $table->bigInteger("imunisasi_id_2")->unsigned()->nullable();
             $table->bigInteger("imunisasi_id_3")->unsigned()->nullable();
-            $table->enum('vitA(merah)', ['Ya', 'Tidak']);
-            $table->enum('vitA(biru)', ['Ya', 'Tidak']);
-            $table->enum('Fe-1', ['Ya', 'Tidak']);
-            $table->enum('Fe-2', ['Ya', 'Tidak']);
+            $table->enum('vitA_merah', ['Ya', 'Tidak']);
+            $table->enum('vitA_biru', ['Ya', 'Tidak']);
+            $table->enum('Fe_1', ['Ya', 'Tidak']);
+            $table->enum('Fe_2', ['Ya', 'Tidak']);
             $table->enum('PMT', ['Ya', 'Tidak']);
             $table->enum('asi_ekslusif', ['Ya', 'Tidak']);
             $table->enum('oralit', ['Ya', 'Tidak']);
