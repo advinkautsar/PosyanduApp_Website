@@ -14,11 +14,11 @@ class Penimbangan extends Model
         'berat_badan',
         'tinggi_badan',
         'lingkar_kepala',
-        'status_bb/u',
-        'status_tb/u',
-        'status_lk/u',
-        'status_bb/tb',
-        'status_imt/u',
+        'status_bb_u',
+        'status_tb_u',
+        'status_lk_u',
+        'status_bb_tb',
+        'status_imt_u',
     ];
 
     public function anak()

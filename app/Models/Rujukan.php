@@ -13,10 +13,9 @@ class Rujukan extends Model
         'nik_anak',
         'bidan_id',
         'puskesmas_id',
-        'tanggal',
-        'penyakit/masalah',
+        'tanggal_rujukan',
+        'keluhan_anak',
         'tempat_pelayanan',
-        'penyakit/masalah',
     ];
 
     public function anak()
@@ -30,5 +29,9 @@ class Rujukan extends Model
     public function puskesmas()
     {
     	return $this->belongsTo(Puskesmas::class);
+    }
+    public function posyandu()
+    {
+    	return $this->belongsTo(Posyandu::class);
     }
 }

@@ -4,8 +4,12 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Models\Anak;
+use App\Models\Bidan;
 use App\Models\Imunisasi;
 use App\Models\Notif;
+use App\Models\Orangtua;
+use App\Models\Posyandu;
+use App\Models\Puskesmas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
@@ -32,6 +36,90 @@ class ListController extends Controller
         }
     }
 
+    public function listOrtu()
+    {
+        $ortu = Orangtua::all();
+
+        if($ortu){
+            return response()->json([
+                'status'    => 'success',
+                'message'   => 'Data tersedia',
+                'data'      => $ortu
+            ], 200);
+        } else {
+            return response()->json([
+                'status'    => 'failed',
+                'message'   => 'Data tidak tersedia',
+                'data'      => []
+            ], 404);
+        }
+
+
+    }
+
+    public function listImunisasi()
+    {
+        $imunisasi = Imunisasi::all();
+
+        if($imunisasi){
+            return response()->json([
+                'status'    => 'success',
+                'message'   => 'Data tersedia',
+                'data'      => $imunisasi
+            ], 200);
+        } else {
+            return response()->json([
+                'status'    => 'failed',
+                'message'   => 'Data tidak tersedia',
+                'data'      => []
+            ], 404);
+        }
+
+
+    }
+
+    public function listPuskesmas()
+    {
+        $pus = Puskesmas::all();
+
+        if($pus){
+            return response()->json([
+                'status'    => 'success',
+                'message'   => 'Data tersedia',
+                'data'      => $pus
+            ], 200);
+        } else {
+            return response()->json([
+                'status'    => 'failed',
+                'message'   => 'Data tidak tersedia',
+                'data'      => []
+            ], 404);
+        }
+
+
+    }
+
+    public function listBidan()
+    {
+        $bidan = Bidan::all();
+
+        if($bidan){
+            return response()->json([
+                'status'    => 'success',
+                'message'   => 'Data tersedia',
+                'data'      => $bidan
+            ], 200);
+        } else {
+            return response()->json([
+                'status'    => 'failed',
+                'message'   => 'Data tidak tersedia',
+                'data'      => []
+            ], 404);
+        }
+
+
+    }
+
     public function create_imunisasi(Request $request){
 
         $imun = Imunisasi::create([
@@ -56,7 +144,8 @@ class ListController extends Controller
         }
 
     }
-  public function test(){
+
+    public function test(){
    
         // $i= Imunisasi::get();
         // $tokenList = Arr::pluck($i, 'token');
@@ -69,7 +158,7 @@ class ListController extends Controller
         // $notif->sendNotif($tokenList, $i[0]->jenis_imunisasi. "Pada waktu ".$i[0]->waktu_imunisasi, "Notifikasi Imunisasi" );
         // return "sukses";
     
-  }
+    }
 
     
 }

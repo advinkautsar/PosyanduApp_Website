@@ -16,4 +16,8 @@ class Imunisasi extends Model
     {
         return $this->hasOne(Pemeriksaan::class);
     }
+    public function jadwal_imunisasis()
+    {
+        return $this->hasMany(Jadwal_Imunisasi::class);
+    }
 }
