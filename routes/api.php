@@ -24,5 +24,6 @@ Route::post('cek-nik-ortu',[UserController::class,'ceknikortu']);
 Route::post('update-akun-ortu',[UserController::class,'updateakunortu']);
 Route::get('list-notifikasi',[NotifikasiController::class,'index']);
 Route::post('create-jadwal-posyandu',[JadwalPosyanducontroller::class,'create_jadwal_posyandu']);
+Route::post('update-kartu-anak',[NotifikasiController::class,'up_no_kartu_anak']);
 
 

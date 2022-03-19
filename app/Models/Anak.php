@@ -9,6 +9,7 @@ class Anak extends Model
 {
     use HasFactory;
     protected $table = "anak";
+    protected $primaryKey = 'nik_anak';
     protected $fillable = [
         'orangtua_id',
         'no_kartu',
