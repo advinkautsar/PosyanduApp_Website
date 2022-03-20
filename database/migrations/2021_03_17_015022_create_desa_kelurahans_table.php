@@ -1,8 +1,9 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 class CreateDesaKelurahansTable extends Migration
 {
@@ -20,6 +21,24 @@ class CreateDesaKelurahansTable extends Migration
             $table->foreign('kecamatan_id')->references('id')->on('kecamatan')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
+
+        DB::table('desa_kelurahan')->insert([
+            'id' =>1,
+            'nama'=>'Kelurahan Banjarsari',
+            'kecamatan_id' =>'1',
+        ]);
+
+        DB::table('desa_kelurahan')->insert([
+            'id' =>2,
+            'nama'=>'Kelurahan Wonosobo',
+            'kecamatan_id' =>'2',
+        ]);
+
+        DB::table('desa_kelurahan')->insert([
+            'id' =>3,
+            'nama'=>'Desa Bulusari',
+            'kecamatan_id' =>'3',
+        ]);
     }
 
     /**

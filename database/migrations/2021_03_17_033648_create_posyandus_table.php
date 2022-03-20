@@ -1,8 +1,9 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 class CreatePosyandusTable extends Migration
 {
@@ -23,6 +24,33 @@ class CreatePosyandusTable extends Migration
             $table->foreign('desa_kelurahan_id')->references('id')->on('desa_kelurahan')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
+
+        DB::table('posyandu')->insert([
+            'id' =>1,
+            'desa_kelurahan_id'=>'1',
+            'nama' =>'posyandu anggrek 1',         
+            'alamat' =>'jl. blimbing 11',        
+            'hari_kegiatan' =>'Senin',        
+            'minggu_kegiatan' =>'Minggu-1',        
+        ]);
+
+        DB::table('posyandu')->insert([
+            'id' =>2,
+            'desa_kelurahan_id'=>'1',
+            'nama' =>'posyandu mawar',         
+            'alamat' =>'jl. blimbing 11',        
+            'hari_kegiatan' =>'Senin',        
+            'minggu_kegiatan' =>'Minggu-2',        
+        ]);
+
+        DB::table('posyandu')->insert([
+            'id' =>3,
+            'desa_kelurahan_id'=>'1',
+            'nama' =>'posyandu rafleshia',         
+            'alamat' =>'jl. blimbing 11',        
+            'hari_kegiatan' =>'Senin',        
+            'minggu_kegiatan' =>'Minggu-3',        
+        ]);
     }
 
     /**

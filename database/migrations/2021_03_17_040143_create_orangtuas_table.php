@@ -1,8 +1,9 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 class CreateOrangtuasTable extends Migration
 {
@@ -32,6 +33,51 @@ class CreateOrangtuasTable extends Migration
             $table->foreign('kecamatan_id')->references('id')->on('kecamatan')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
+
+        DB::table('orangtua')->insert([
+            'id' =>1,
+            'desa_kelurahan_id'=>'1',
+            'kecamatan_id'=>'1',
+            'posyandu_id'=>'1',
+            'user_id' =>'3',
+            'nik_ayah' =>'3510210102990009',            
+            'nama_ayah' =>'Ega Dhesta',
+            'nik_ibu' =>'3510210102990008',    
+            'nama_ibu' =>'Berdhika pratama',
+            'alamat' =>'jl. blimbing 1',        
+            'rt' =>'01',        
+            'rw' =>'03',             
+        ]);
+
+        DB::table('orangtua')->insert([
+            'id' =>2,
+            'desa_kelurahan_id'=>'1',
+            'kecamatan_id'=>'1',
+            'posyandu_id'=>'1',
+            'user_id' =>'4',
+            'nik_ayah' =>'3510210102990004',            
+            'nama_ayah' =>'herotada',
+            'nik_ibu' =>'3510210102990003',         
+            'nama_ibu' =>'Berliandina',
+            'alamat' =>'jl. blimbing 1',        
+            'rt' =>'01',        
+            'rw' =>'03',             
+        ]);
+
+        DB::table('orangtua')->insert([
+            'id' =>3,
+            'desa_kelurahan_id'=>'1',
+            'kecamatan_id'=>'1',
+            'posyandu_id'=>'1',
+            'user_id' =>'5',
+            'nik_ayah' =>'3510210102990001',            
+            'nama_ayah' =>'Bintang kejora',
+            'nik_ibu' =>'3510210102990002',  
+            'nama_ibu' =>'tasya farsha',          
+            'alamat' =>'jl. blimbing 1',        
+            'rt' =>'01',        
+            'rw' =>'03',             
+        ]);
     }
 
     /**

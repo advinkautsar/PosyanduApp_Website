@@ -1,8 +1,9 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 class CreateBidansTable extends Migration
 {
@@ -25,6 +26,15 @@ class CreateBidansTable extends Migration
             $table->foreign('user_id')->references('id')->on('user')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
+
+        DB::table('bidan')->insert([
+            'id' =>1,
+            'puskesmas_id'=>'1',
+            'posyandu_id'=>'1',
+            'user_id' =>'1',
+            'nama' =>'bidan',            
+            'alamat' =>'jl. blimbing 11',        
+        ]);
     }
 
     /**

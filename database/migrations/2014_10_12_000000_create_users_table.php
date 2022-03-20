@@ -31,6 +31,55 @@ class CreateUsersTable extends Migration
             'nama_pengguna' =>'bidan',
             'kata_sandi'=> bcrypt(123),
         ]);
+
+         DB::table('user')->insert([
+
+            'id' =>2,
+            'role'=>'kader',
+            'nama_pengguna' =>'kader1',
+            'kata_sandi'=> bcrypt(123),
+        ]);
+
+         DB::table('user')->insert([
+
+            'id' =>3,
+            'role'=>'orangtua',
+            'nama_pengguna' =>'Ega Dhesta',
+            'kata_sandi'=> bcrypt(123456),
+        ]);
+
+        DB::table('user')->insert([
+
+            'id' =>4,
+            'role'=>'orangtua',
+            'nama_pengguna' =>'Irfan Rakha',
+            'kata_sandi'=> bcrypt(123456),
+        ]);
+
+        DB::table('user')->insert([
+
+            'id' =>5,
+            'role'=>'orangtua',
+            'nama_pengguna' =>'Reza Wahid',
+            'kata_sandi'=> bcrypt(123456),
+        ]);
+
+        DB::table('user')->insert([
+
+            'id' =>6,
+            'role'=>'petugas_desa',
+            'nama_pengguna' =>'petugas_desa1',
+            'kata_sandi'=> bcrypt(123),
+        ]);
+
+        DB::table('user')->insert([
+
+            'id' =>7,
+            'role'=>'petugas_puskesmas',
+            'nama_pengguna' =>'petugas_puskesmas1',
+            'kata_sandi'=> bcrypt(123),
+        ]);
+       
     }
 
     /**

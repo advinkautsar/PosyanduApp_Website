@@ -1,8 +1,9 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 class CreatePemeriksaansTable extends Migration
 {
@@ -35,6 +36,60 @@ class CreatePemeriksaansTable extends Migration
             $table->foreign('imunisasi_id_3')->references('id')->on('imunisasi')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
+
+        DB::table('pemeriksaan')->insert([
+            'id' =>1,
+            'nik_anak'=>'3510210102990011',
+            'bidan_id' =>'1',       
+            'imunisasi_id_1' =>'1',       
+            'imunisasi_id_2' =>'2',       
+            'imunisasi_id_3' =>'3',       
+            'vitA_merah' =>'Ya',       
+            'vitA_biru' =>'Tidak',       
+            'Fe_1' =>'Tidak',       
+            'Fe_2' =>'Ya',       
+            'PMT' =>'Tidak',       
+            'asi_ekslusif' =>'Ya',       
+            'oralit' =>'Ya',       
+            'obat_cacing' =>'Tidak',       
+        ]);
+
+        DB::table('pemeriksaan')->insert([
+            'id' =>2,
+            'nik_anak'=>'3510210102990011',
+            'bidan_id' =>'1',       
+            'imunisasi_id_1' =>'1',       
+            'imunisasi_id_2' =>'2',       
+            'imunisasi_id_3' =>'2',       
+            'vitA_merah' =>'Ya',       
+            'vitA_biru' =>'Tidak',       
+            'Fe_1' =>'Tidak',       
+            'Fe_2' =>'Ya',       
+            'PMT' =>'Tidak',       
+            'asi_ekslusif' =>'Ya',       
+            'oralit' =>'Ya',       
+            'obat_cacing' =>'Tidak',       
+        ]);
+
+        DB::table('pemeriksaan')->insert([
+            'id' =>3,
+            'nik_anak'=>'3510210102990011',
+            'bidan_id' =>'1',       
+            'imunisasi_id_1' =>'2',       
+            'imunisasi_id_2' =>'2',       
+            'imunisasi_id_3' =>'2',       
+            'vitA_merah' =>'Ya',       
+            'vitA_biru' =>'Tidak',       
+            'Fe_1' =>'Tidak',       
+            'Fe_2' =>'Ya',       
+            'PMT' =>'Tidak',       
+            'asi_ekslusif' =>'Ya',       
+            'oralit' =>'Ya',       
+            'obat_cacing' =>'Tidak',       
+        ]);
+
+
+
     }
 
     /**

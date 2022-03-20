@@ -1,8 +1,9 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 class CreatePuskesmasTable extends Migration
 {
@@ -21,6 +22,13 @@ class CreatePuskesmasTable extends Migration
             $table->foreign('kecamatan_id')->references('id')->on('kecamatan')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
+
+        DB::table('puskesmas')->insert([
+            'id' =>1,
+            'nama_puskesmas'=>'Puskesmas Paspan',
+            'alamat_puskesmas' =>'Jl. Paspan 12',
+            'kecamatan_id' =>'1',            
+        ]);
     }
 
     /**

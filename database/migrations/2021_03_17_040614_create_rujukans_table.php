@@ -1,8 +1,9 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 class CreateRujukansTable extends Migration
 {
@@ -27,6 +28,36 @@ class CreateRujukansTable extends Migration
             $table->foreign('tempat_pelayanan')->references('id')->on('posyandu')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
+
+        DB::table('rujukan')->insert([
+            'id' =>1,
+            'nik_anak'=>'3510210102990011',
+            'bidan_id' =>'1',       
+            'puskesmas_id' =>'1',       
+            'tempat_pelayanan' =>'1',       
+            'tanggal_rujukan' =>'2022-03-20',       
+            'keluhan_anak' =>'Pusing kunang-kunang',       
+        ]);
+
+        DB::table('rujukan')->insert([
+            'id' =>2,
+            'nik_anak'=>'3510210102990012',
+            'bidan_id' =>'1',       
+            'puskesmas_id' =>'1',       
+            'tempat_pelayanan' =>'1',       
+            'tanggal_rujukan' =>'2022-03-20',       
+            'keluhan_anak' =>'Pusing kunang-kunang',       
+        ]);
+
+        DB::table('rujukan')->insert([
+            'id' =>3,
+            'nik_anak'=>'3510210102990013',
+            'bidan_id' =>'1',       
+            'puskesmas_id' =>'1',       
+            'tempat_pelayanan' =>'1',       
+            'tanggal_rujukan' =>'2022-03-20',       
+            'keluhan_anak' =>'Pusing kunang-kunang',       
+        ]);
     }
 
     /**
