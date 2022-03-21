@@ -38,13 +38,13 @@ class RujukanController extends Controller
 
     public function read()
     {
-         $data = Rujukan::all();
-     
-        if($data){
+        //  $data = Rujukan::all();
+        $rujukan_anak = Rujukan::with('anak','posyandu','bidan','puskesmas')->get();
+        if($rujukan_anak){
             return response()->json([
                 'status'    => 'success',
                 'message'   => 'Data tersedia',
-                'data'      => $data
+                'data'      => $rujukan_anak
             ], 200);
         } else {
             return response()->json([
@@ -52,7 +52,8 @@ class RujukanController extends Controller
                 'message'   => 'Data tidak tersedia',
                 'data'      => []
             ], 404);
-        }
+        }     
+        
     }
 
     public function update(Request $request,$id)

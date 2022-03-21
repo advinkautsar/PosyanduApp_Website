@@ -28,15 +28,22 @@ class Pemeriksaan extends Model
 
     public function anak()
     {
-    	return $this->belongsTo(Anak::class);
+    	return $this->belongsTo(Anak::class,'nik_anak');
     }
     public function bidan()
     {
-    	return $this->belongsTo(Bidan::class);
+    	return $this->belongsTo(Bidan::class,'bidan_id');
     }
-    public function imunisasi()
+    public function imunisasi1()
     {
-    	return $this->belongsTo(Imunisasi::class);
+    	return $this->belongsTo(Imunisasi::class,'imunisasi_id_1');
+    }
+    public function imunisasi2()
+    {
+    	return $this->belongsTo(Imunisasi::class,'imunisasi_id_2');
+    }public function imunisasi3()
+    {
+    	return $this->belongsTo(Imunisasi::class,'imunisasi_id_3');
     }
 
 }

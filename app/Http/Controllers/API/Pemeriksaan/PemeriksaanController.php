@@ -47,13 +47,12 @@ class PemeriksaanController extends Controller
 
     public function read()
     {
-         $periksa = Pemeriksaan::all();
-     
-        if($periksa){
+        $pemeriksaan = Pemeriksaan::with('anak','imunisasi1','imunisasi2','imunisasi3','bidan')->get();
+        if($pemeriksaan){
             return response()->json([
                 'status'    => 'success',
                 'message'   => 'Data tersedia',
-                'data'      => $periksa
+                'data'      => $pemeriksaan
             ], 200);
         } else {
             return response()->json([

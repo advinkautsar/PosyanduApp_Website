@@ -126,5 +126,60 @@ class UserController extends Controller
 
         }
     }
-    
+
+    public function getUserRelasiOrtu($id)
+    {
+        $user = User::with('orangtua')->find($id);
+        
+        if($user){
+            return response()->json([
+                'status'    => 'success',
+                'message'   => 'Data tersedia',
+                'data'      => $user
+            ], 200);
+        } else {
+            return response()->json([
+                'status'    => 'failed',
+                'message'   => 'Data tidak tersedia',
+                'data'      => []
+            ], 404);
+        }
+    }
+
+    public function getUserRelasiBidan($id)
+    {
+        $user = User::with('bidan')->find($id);
+
+        if($user){
+            return response()->json([
+                'status'    => 'success',
+                'message'   => 'Data tersedia',
+                'data'      => $user
+            ], 200);
+        } else {
+            return response()->json([
+                'status'    => 'failed',
+                'message'   => 'Data tidak tersedia',
+                'data'      => []
+            ], 404);
+        }
+    }
+
+    public function getUserRelasiKader($id)
+    {
+        $user = User::with('kader')->find($id);
+        if($user){
+            return response()->json([
+                'status'    => 'success',
+                'message'   => 'Data tersedia',
+                'data'      => $user
+            ], 200);
+        } else {
+            return response()->json([
+                'status'    => 'failed',
+                'message'   => 'Data tidak tersedia',
+                'data'      => []
+            ], 404);
+        }
+    }
 }

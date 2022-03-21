@@ -20,18 +20,18 @@ class Rujukan extends Model
 
     public function anak()
     {
-    	return $this->belongsTo(Anak::class);
+    	return $this->belongsTo(Anak::class,'nik_anak');
     }
     public function bidan()
     {
-    	return $this->belongsTo(Bidan::class);
+    	return $this->belongsTo(Bidan::class,'bidan_id');
     }
     public function puskesmas()
     {
-    	return $this->belongsTo(Puskesmas::class);
+    	return $this->belongsTo(Puskesmas::class,'puskesmas_id');
     }
     public function posyandu()
     {
-    	return $this->belongsTo(Posyandu::class);
+    	return $this->belongsTo(Posyandu::class,'tempat_pelayanan');
     }
 }

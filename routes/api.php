@@ -58,3 +58,8 @@ Route::post('tambah_dataPemeriksaan',[PemeriksaanController::class, 'create']);
 Route::get('ambil_dataPemeriksaan',[PemeriksaanController::class, 'read']);
 Route::put('ubah_dataPemeriksaan/{id}',[PemeriksaanController::class, 'update']);
 Route::delete('hapus_dataPemeriksaan/{id}',[PemeriksaanController::class, 'delete']);
+
+//MendapatkanRelasiUser
+Route::get('get_user_ortu/{id}', [UserController::class,'getUserRelasiOrtu']);
+Route::get('get_user_bidan/{id}', [UserController::class,'getUserRelasiBidan']);
+Route::get('get_user_kader/{id}', [UserController::class,'getUserRelasiKader']);
