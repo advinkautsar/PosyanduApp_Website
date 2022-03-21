@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\bIDAN\JadwalImunisasicontroller;
 use App\Http\Controllers\API\Kader\JadwalPosyanducontroller;
 use App\Http\Controllers\API\ListController;
 use App\Http\Controllers\API\Ortu\NotifikasiController;
@@ -43,6 +44,7 @@ Route::post('cek-nik-ortu',[UserController::class,'ceknikortu']);
 Route::post('update-akun-ortu',[UserController::class,'updateakunortu']);
 Route::get('list-notifikasi',[NotifikasiController::class,'index']);
 Route::post('create-jadwal-posyandu',[JadwalPosyanducontroller::class,'create_jadwal_posyandu']);
+Route::post('create-jadwal-imunisasi',[JadwalImunisasicontroller::class,'create_jadwal_imunisasi']);
 Route::post('update-kartu-anak',[NotifikasiController::class,'up_no_kartu_anak']);
 
 // CRUD Rujukan

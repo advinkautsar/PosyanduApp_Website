@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Anak;
 use App\Models\Bidan;
 use App\Models\Imunisasi;
+use App\Models\Jadwal_Imunisasi;
 use App\Models\Notif;
 use App\Models\Orangtua;
 use App\Models\Posyandu;
@@ -122,10 +123,14 @@ class ListController extends Controller
 
     public function create_imunisasi(Request $request){
 
-        $imun = Imunisasi::create([
+        $imun = Jadwal_Imunisasi::create([
 
-            'jenis_imunisasi'=>$request->jenis_imunisasi,
-            'waktu_imunisasi'=>$request->waktu_imunisasi,
+            // 'jenis_imunisasi'=>$request->jenis_imunisasi,
+            // 'waktu_imunisasi'=>$request->waktu_imunisasi,
+            'bidan_id'=>$request->bidan_id,
+            'nik_anak'=>$request->nik_anak,
+            'imunisasi_id'=>$request->imunisasi_id,
+            'tanggal_imunisasi'=>$request->tanggal_imunisasi,
 
         ]);
 

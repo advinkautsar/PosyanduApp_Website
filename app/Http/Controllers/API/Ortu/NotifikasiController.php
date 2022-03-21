@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\Anak;
 use App\Models\Imunisasi;
 use App\Models\Jadwal;
+use App\Models\Jadwal_Imunisasi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class NotifikasiController extends Controller
 {
@@ -34,8 +36,11 @@ class NotifikasiController extends Controller
         //         'data'      => []
         //     ], 404);
         // }
-        $jadwal = Jadwal::orderBy('created_at','DESC')->get();
-        $imunisasi = Imunisasi::orderBy('created_at','DESC')->get();
+        $jadwal = DB::table('jadwal')->orderBy('created_at','DESC')->get();
+        $imunisasi = DB::table('jadwal_imunisasi')
+        ->leftJoin('imunisasi','jadwal_imunisasi.imunisasi_id','imunisasi.id')
+        ->select('imunisasi.*','jadwal_imunisasi.*')->orderBy('jadwal_imunisasi.created_at','DESC')->get();
+        
         $data=[];
         $data2=[];
 
@@ -51,7 +56,7 @@ class NotifikasiController extends Controller
     
         foreach($imunisasi as $v2){
             $data2[] = [
-                'key1' => $v2->jenis_imunisasi." ". $v2->waktu_imunisasi,
+                'key1' => "Hai Ibu ada  jadwal nih imunisasi " . $v2->jenis_imunisasi ." waktu :  ". $v2->waktu_imunisasi,
                 'key2' => $v2->created_at,
                 'key3' => "Jadwal Imunisasi",
              ];
