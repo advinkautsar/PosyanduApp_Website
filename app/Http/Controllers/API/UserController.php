@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Models\Bidan;
+use App\Models\Kader;
 use App\Models\Orangtua;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -129,7 +131,7 @@ class UserController extends Controller
 
     public function getUserRelasiOrtu($id)
     {
-        $user = User::with('orangtua')->find($id);
+        $user = Orangtua::where('user_id',$id)->first();
         
         if($user){
             return response()->json([
@@ -148,7 +150,7 @@ class UserController extends Controller
 
     public function getUserRelasiBidan($id)
     {
-        $user = User::with('bidan')->find($id);
+        $user =Bidan::where('user_id',$id)->first();
 
         if($user){
             return response()->json([
@@ -167,7 +169,7 @@ class UserController extends Controller
 
     public function getUserRelasiKader($id)
     {
-        $user = User::with('kader')->find($id);
+        $user = Kader::where('user_id',$id)->first();
         if($user){
             return response()->json([
                 'status'    => 'success',
