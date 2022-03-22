@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\API\Rujukan;
 
-use App\Http\Controllers\Controller;
 use App\Models\Rujukan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 
 class RujukanController extends Controller
 {
@@ -38,8 +39,13 @@ class RujukanController extends Controller
 
     public function read()
     {
-        //  $data = Rujukan::all();
-        $rujukan_anak = Rujukan::with('anak','posyandu','bidan','puskesmas')->get();
+        $rujukan_anak = DB::table('rujukan')        
+            ->leftJoin('anak','rujukan.nik_anak','anak.nik_anak')
+            ->leftJoin('puskesmas','rujukan.puskesmas_id','puskesmas.id')
+            ->leftJoin('posyandu','rujukan.tempat_pelayanan','posyandu.id')
+            ->leftJoin('bidan','rujukan.bidan_id','bidan.id')
+            ->get();
+
         if($rujukan_anak){
             return response()->json([
                 'status'    => 'success',
@@ -54,6 +60,31 @@ class RujukanController extends Controller
             ], 404);
         }     
         
+    }
+
+    public function show($id)
+    {
+        $rujukan_anak = DB::table('rujukan')        
+            ->leftJoin('anak','rujukan.nik_anak','anak.nik_anak')
+            ->leftJoin('puskesmas','rujukan.puskesmas_id','puskesmas.id')
+            ->leftJoin('posyandu','rujukan.tempat_pelayanan','posyandu.id')
+            ->leftJoin('bidan','rujukan.bidan_id','bidan.id')
+            ->where('rujukan.id',$id)
+            ->get();
+
+        if($rujukan_anak){
+            return response()->json([
+                'status'    => 'success',
+                'message'   => 'Data tersedia',
+                'data'      => $rujukan_anak
+            ], 200);
+        } else {
+            return response()->json([
+                'status'    => 'failed',
+                'message'   => 'Data tidak tersedia',
+                'data'      => []
+            ], 404);
+        } 
     }
 
     public function update(Request $request,$id)

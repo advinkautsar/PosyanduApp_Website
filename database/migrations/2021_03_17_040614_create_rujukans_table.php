@@ -46,7 +46,7 @@ class CreateRujukansTable extends Migration
             'puskesmas_id' =>'1',       
             'tempat_pelayanan' =>'1',       
             'tanggal_rujukan' =>'2022-03-20',       
-            'keluhan_anak' =>'Pusing kunang-kunang',       
+            'keluhan_anak' =>'Panas',       
         ]);
 
         DB::table('rujukan')->insert([
@@ -56,7 +56,7 @@ class CreateRujukansTable extends Migration
             'puskesmas_id' =>'1',       
             'tempat_pelayanan' =>'1',       
             'tanggal_rujukan' =>'2022-03-20',       
-            'keluhan_anak' =>'Pusing kunang-kunang',       
+            'keluhan_anak' =>'Diare',       
         ]);
     }
 

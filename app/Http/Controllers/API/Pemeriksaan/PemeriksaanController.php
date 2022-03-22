@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\API\Pemeriksaan;
 
-use App\Http\Controllers\Controller;
 use App\Models\Pemeriksaan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 
 class PemeriksaanController extends Controller
 {
@@ -47,7 +48,41 @@ class PemeriksaanController extends Controller
 
     public function read()
     {
-        $pemeriksaan = Pemeriksaan::with('anak','imunisasi1','imunisasi2','imunisasi3','bidan')->get();
+        $pemeriksaan = DB::table('pemeriksaan')        
+            ->leftJoin('anak','pemeriksaan.nik_anak','anak.nik_anak')
+            ->leftJoin('imunisasi','pemeriksaan.imunisasi_id_1','imunisasi.id')
+            // ->leftJoin('imunisasi','pemeriksaan.imunisasi_id_1','imunisasi.id')
+            // ->leftJoin('imunisasi','pemeriksaan.imunisasi_id_3','imunisasi.id')
+            ->leftJoin('bidan','pemeriksaan.bidan_id','bidan.id')
+            ->get();
+
+        if($pemeriksaan){
+            return response()->json([
+                'status'    => 'success',
+                'message'   => 'Data tersedia',
+                'data'      => $pemeriksaan
+            ], 200);
+        } else {
+            return response()->json([
+                'status'    => 'failed',
+                'message'   => 'Data tidak tersedia',
+                'data'      => []
+            ], 404);
+        }
+        
+    }
+
+    public function show($id)
+    {
+        $pemeriksaan = DB::table('pemeriksaan')        
+            ->leftJoin('anak','pemeriksaan.nik_anak','anak.nik_anak')
+            ->leftJoin('imunisasi','pemeriksaan.imunisasi_id_1','imunisasi.id')
+            // ->rightJoin('imunisasi','pemeriksaan.imunisasi_id_1','imunisasi.id')
+            // ->rightJoin('imunisasi','pemeriksaan.imunisasi_id_3','imunisasi.id')
+            ->leftJoin('bidan','pemeriksaan.bidan_id','bidan.id')
+            ->where('pemeriksaan.id',$id)
+            ->get();
+
         if($pemeriksaan){
             return response()->json([
                 'status'    => 'success',

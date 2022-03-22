@@ -10,7 +10,7 @@ class Bidan extends Model
     use HasFactory;
     protected $table = "bidan";
     protected $fillable = [
-        'nama',
+        'nama_bidan',
         'alamat',
         'user_id',
         'puskesmas_id',

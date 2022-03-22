@@ -56,7 +56,7 @@ class CreatePemeriksaansTable extends Migration
 
         DB::table('pemeriksaan')->insert([
             'id' =>2,
-            'nik_anak'=>'3510210102990011',
+            'nik_anak'=>'3510210102990012',
             'bidan_id' =>'1',       
             'imunisasi_id_1' =>'1',       
             'imunisasi_id_2' =>'2',       
@@ -73,7 +73,7 @@ class CreatePemeriksaansTable extends Migration
 
         DB::table('pemeriksaan')->insert([
             'id' =>3,
-            'nik_anak'=>'3510210102990011',
+            'nik_anak'=>'3510210102990013',
             'bidan_id' =>'1',       
             'imunisasi_id_1' =>'2',       
             'imunisasi_id_2' =>'2',       

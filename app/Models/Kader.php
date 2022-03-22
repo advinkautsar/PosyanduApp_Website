@@ -10,7 +10,7 @@ class Kader extends Model
     use HasFactory;
     protected $table = "kader";
      protected $fillable = [
-        'nama',
+        'nama_kader',
         'alamat',
         'user_id',
         'posyandu_id',

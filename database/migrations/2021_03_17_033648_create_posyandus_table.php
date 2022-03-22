@@ -17,7 +17,7 @@ class CreatePosyandusTable extends Migration
         Schema::create('posyandu', function (Blueprint $table) {
             $table->id();
             $table->bigInteger("desa_kelurahan_id")->unsigned()->nullable();
-            $table->string("nama");
+            $table->string("nama_posyandu");
             $table->string("alamat");
             $table->string("hari_kegiatan");
             $table->enum('minggu_kegiatan', ['Minggu-1', 'Minggu-2','Minggu-3','Minggu-4']);
@@ -28,7 +28,7 @@ class CreatePosyandusTable extends Migration
         DB::table('posyandu')->insert([
             'id' =>1,
             'desa_kelurahan_id'=>'1',
-            'nama' =>'posyandu anggrek 1',         
+            'nama_posyandu' =>'posyandu anggrek 1',         
             'alamat' =>'jl. blimbing 11',        
             'hari_kegiatan' =>'Senin',        
             'minggu_kegiatan' =>'Minggu-1',        
@@ -37,7 +37,7 @@ class CreatePosyandusTable extends Migration
         DB::table('posyandu')->insert([
             'id' =>2,
             'desa_kelurahan_id'=>'1',
-            'nama' =>'posyandu mawar',         
+            'nama_posyandu' =>'posyandu mawar',         
             'alamat' =>'jl. blimbing 11',        
             'hari_kegiatan' =>'Senin',        
             'minggu_kegiatan' =>'Minggu-2',        
@@ -46,7 +46,7 @@ class CreatePosyandusTable extends Migration
         DB::table('posyandu')->insert([
             'id' =>3,
             'desa_kelurahan_id'=>'1',
-            'nama' =>'posyandu rafleshia',         
+            'nama_posyandu' =>'posyandu rafleshia',         
             'alamat' =>'jl. blimbing 11',        
             'hari_kegiatan' =>'Senin',        
             'minggu_kegiatan' =>'Minggu-3',        

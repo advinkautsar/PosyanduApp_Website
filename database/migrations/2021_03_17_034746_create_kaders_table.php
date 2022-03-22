@@ -18,7 +18,7 @@ class CreateKadersTable extends Migration
             $table->id();
             $table->bigInteger("posyandu_id")->unsigned()->nullable();
             $table->bigInteger("user_id")->unsigned()->nullable();
-            $table->string("nama");
+            $table->string("nama_kader");
             $table->string("alamat");
             $table->foreign('posyandu_id')->references('id')->on('posyandu')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('user_id')->references('id')->on('user')->onDelete('cascade')->onUpdate('cascade');
@@ -29,7 +29,7 @@ class CreateKadersTable extends Migration
             'id' =>1,
             'posyandu_id'=>'1',
             'user_id' =>'2',
-            'nama' =>'kader1',            
+            'nama_kader' =>'kader1',            
             'alamat' =>'jl. blimbing 11',        
         ]);
     }

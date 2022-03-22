@@ -39,7 +39,6 @@ Route::post('list-anak-cari',[testcontroller::class,'listanak']);
 // Testing
 Route::post('create-imunisasi',[ListController::class,'create_imunisasi']);
 Route::post('testnotif',[ListController::class,'test']);
-
 Route::post('cek-nik-ortu',[UserController::class,'ceknikortu']);
 Route::post('update-akun-ortu',[UserController::class,'updateakunortu']);
 Route::get('list-notifikasi',[NotifikasiController::class,'index']);
@@ -50,12 +49,14 @@ Route::post('update-kartu-anak',[NotifikasiController::class,'up_no_kartu_anak']
 // CRUD Rujukan
 Route::post('tambah_datarujukan',[RujukanController::class, 'create']);
 Route::get('ambil_datarujukan',[RujukanController::class, 'read']);
+Route::get('show_datarujukan/{id}',[RujukanController::class, 'show']);
 Route::put('ubah_datarujukan/{id}',[RujukanController::class, 'update']);
 Route::delete('hapus_datarujukan/{id}',[RujukanController::class, 'delete']);
 
 // CRUD Pemeriksaan Anak
 Route::post('tambah_dataPemeriksaan',[PemeriksaanController::class, 'create']);
 Route::get('ambil_dataPemeriksaan',[PemeriksaanController::class, 'read']);
+Route::get('show_dataPemeriksaan/{id}',[PemeriksaanController::class, 'show']);
 Route::put('ubah_dataPemeriksaan/{id}',[PemeriksaanController::class, 'update']);
 Route::delete('hapus_dataPemeriksaan/{id}',[PemeriksaanController::class, 'delete']);
 

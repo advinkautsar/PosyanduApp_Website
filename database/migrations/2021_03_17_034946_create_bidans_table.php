@@ -19,7 +19,7 @@ class CreateBidansTable extends Migration
             $table->bigInteger("puskesmas_id")->unsigned()->nullable();
             $table->bigInteger("posyandu_id")->unsigned()->nullable();
             $table->bigInteger("user_id")->unsigned()->nullable();
-            $table->string("nama");
+            $table->string("nama_bidan");
             $table->string("alamat");
             $table->foreign('puskesmas_id')->references('id')->on('puskesmas')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('posyandu_id')->references('id')->on('posyandu')->onDelete('cascade')->onUpdate('cascade');
@@ -32,7 +32,7 @@ class CreateBidansTable extends Migration
             'puskesmas_id'=>'1',
             'posyandu_id'=>'1',
             'user_id' =>'1',
-            'nama' =>'bidan',            
+            'nama_bidan' =>'bidan',            
             'alamat' =>'jl. blimbing 11',        
         ]);
     }
