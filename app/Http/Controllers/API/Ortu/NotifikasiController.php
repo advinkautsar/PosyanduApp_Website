@@ -42,7 +42,7 @@ class NotifikasiController extends Controller
         ->leftJoin('anak','jadwal_imunisasi.nik_anak','anak.nik_anak')
         ->leftJoin('orangtua','anak.orangtua_id','orangtua.id')
         ->leftJoin('user','orangtua.user_id','user.id')
-        ->select('imunisasi.*','jadwal_imunisasi.*','user.*')
+        ->select('imunisasi.*','user.*','jadwal_imunisasi.created_at as waktune','jadwal_imunisasi.*')
         ->where('user.id',$id)->orderBy('jadwal_imunisasi.created_at','DESC')->get();
         
         $data=[];
@@ -52,7 +52,7 @@ class NotifikasiController extends Controller
         foreach($jadwal as $v){
             // $data['key1'] = $v->keterangan_kegiatan;
             $data[] = [
-                'key1' =>"pada tanggal ". $v->tanggal_kegiatan." ada kegiatan ". $v->keterangan_kegiatan,
+                'key1' =>"Ada Pemberitahuan pada tanggal ". $v->tanggal_kegiatan." ada kegiatan ". $v->keterangan_kegiatan,
                 'key2' => $v->created_at,
                 'key3' => "Jadwal Posyandu",
              ];
@@ -60,8 +60,8 @@ class NotifikasiController extends Controller
     
         foreach($imunisasi as $v2){
             $data2[] = [
-                'key1' => "Hai Ibu ada  jadwal nih imunisasi " . $v2->jenis_imunisasi ." waktu :  ". $v2->waktu_imunisasi,
-                'key2' => $v2->created_at,
+                'key1' => "Hai Ibu $v2->nama_pengguna ada  jadwal nih imunisasi " . $v2->jenis_imunisasi ." waktu :  ". $v2->waktu_imunisasi,
+                'key2' => $v2->waktune,
                 'key3' => "Jadwal Imunisasi",
              ];
         }
