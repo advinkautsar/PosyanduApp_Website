@@ -30,7 +30,7 @@ Route::get('list-bidan',[ListController::class,'listBidan']);
 
 //CRUD Notifikasi Jadwal Posyandu
 Route::get('list-posyandu',[JadwalPosyanducontroller::class,'listposyandu']);
-Route::get('list-notifikasi',[NotifikasiController::class,'index']);
+Route::get('list-notifikasi/{id}',[NotifikasiController::class,'index']);
 Route::post('create-jadwal-posyandu',[JadwalPosyanducontroller::class,'create_jadwal_posyandu']);
 
 // Fitur Pencarian

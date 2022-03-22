@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\DB;
 class NotifikasiController extends Controller
 {
     //
-    public function index(){
+    public function index($id){
         // $jadwal = Jadwal::all();
         // $imunisasi = Imunisasi::all();
 
@@ -39,7 +39,11 @@ class NotifikasiController extends Controller
         $jadwal = DB::table('jadwal')->orderBy('created_at','DESC')->get();
         $imunisasi = DB::table('jadwal_imunisasi')
         ->leftJoin('imunisasi','jadwal_imunisasi.imunisasi_id','imunisasi.id')
-        ->select('imunisasi.*','jadwal_imunisasi.*')->orderBy('jadwal_imunisasi.created_at','DESC')->get();
+        ->leftJoin('anak','jadwal_imunisasi.nik_anak','anak.nik_anak')
+        ->leftJoin('orangtua','anak.orangtua_id','orangtua.id')
+        ->leftJoin('user','orangtua.user_id','user.id')
+        ->select('imunisasi.*','jadwal_imunisasi.*','user.*')
+        ->where('user.id',$id)->orderBy('jadwal_imunisasi.created_at','DESC')->get();
         
         $data=[];
         $data2=[];
