@@ -36,6 +36,8 @@ Route::post('create-jadwal-posyandu',[JadwalPosyanducontroller::class,'create_ja
 // Fitur Pencarian
 Route::post('list-anak-cari',[testcontroller::class,'listanak']);
 
+Route::get('list-status',[ListController::class,'status']);
+
 // Testing
 Route::post('create-imunisasi',[ListController::class,'create_imunisasi']);
 Route::post('testnotif',[ListController::class,'test']);
@@ -55,7 +57,7 @@ Route::delete('hapus_datarujukan/{id}',[RujukanController::class, 'delete']);
 
 // CRUD Pemeriksaan Anak
 Route::post('tambah_dataPemeriksaan',[PemeriksaanController::class, 'create']);
-Route::get('ambil_dataPemeriksaan',[PemeriksaanController::class, 'read']);
+Route::get('ambil_dataPemeriksaan/{id}',[PemeriksaanController::class, 'read']);
 Route::get('show_dataPemeriksaan/{id}',[PemeriksaanController::class, 'show']);
 Route::put('ubah_dataPemeriksaan/{id}',[PemeriksaanController::class, 'update']);
 Route::delete('hapus_dataPemeriksaan/{id}',[PemeriksaanController::class, 'delete']);

@@ -44,6 +44,7 @@ class RujukanController extends Controller
             ->leftJoin('puskesmas','rujukan.puskesmas_id','puskesmas.id')
             ->leftJoin('posyandu','rujukan.tempat_pelayanan','posyandu.id')
             ->leftJoin('bidan','rujukan.bidan_id','bidan.id')
+            ->select('puskesmas.*','bidan.nama as nama_bidan','posyandu.*','rujukan.*')
             ->get();
 
         if($rujukan_anak){
@@ -69,8 +70,9 @@ class RujukanController extends Controller
             ->leftJoin('puskesmas','rujukan.puskesmas_id','puskesmas.id')
             ->leftJoin('posyandu','rujukan.tempat_pelayanan','posyandu.id')
             ->leftJoin('bidan','rujukan.bidan_id','bidan.id')
+            ->select('puskesmas.*','bidan.nama as nama_bidan','anak.*','posyandu.*','posyandu.id as id_posyandu','rujukan.*')
             ->where('rujukan.id',$id)
-            ->get();
+            ->first();
 
         if($rujukan_anak){
             return response()->json([

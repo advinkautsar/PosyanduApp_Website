@@ -39,7 +39,8 @@ class JadwalImunisasicontroller extends Controller
           
             $id_user = User::where('id',$id_ortu->user_id)->first();
             $notif->sendNotifImunisasi($id_user->token, $jenis->jenis_imunisasi. "Pada waktu ".$imun->tanggal_imunisasi, "Notifikasi Imunisasi" );
-            // return "sukses";
+           
+            // return $id_user;
             return response()->json($data);
         } else {
             $data = [

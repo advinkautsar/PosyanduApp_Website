@@ -165,5 +165,26 @@ class ListController extends Controller
     
     }
 
+    public function status(){
+        $array = array(array('status' => 'Ya'), array('status' => 'Tidak'));
+ 
+    //    return $array;
+
+        if($array){
+            return response()->json([
+                'status'    => 'success',
+                'message'   => 'Data tersedia',
+                'data'      => $array
+            ], 200);
+        } else {
+            return response()->json([
+                'status'    => 'failed',
+                'message'   => 'Data tidak tersedia',
+                'data'      => []
+            ], 404);
+        }
+
+    }
+
     
 }

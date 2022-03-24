@@ -46,14 +46,17 @@ class PemeriksaanController extends Controller
 
     }
 
-    public function read()
+    public function read($id)
     {
         $pemeriksaan = DB::table('pemeriksaan')        
-            ->leftJoin('anak','pemeriksaan.nik_anak','anak.nik_anak')
-            ->leftJoin('imunisasi','pemeriksaan.imunisasi_id_1','imunisasi.id')
-            // ->leftJoin('imunisasi','pemeriksaan.imunisasi_id_1','imunisasi.id')
-            // ->leftJoin('imunisasi','pemeriksaan.imunisasi_id_3','imunisasi.id')
-            ->leftJoin('bidan','pemeriksaan.bidan_id','bidan.id')
+            ->join('anak','pemeriksaan.nik_anak','anak.nik_anak')
+            ->join('imunisasi','pemeriksaan.imunisasi_id_1','imunisasi.id')
+            ->join('imunisasi as imunisasi2','pemeriksaan.imunisasi_id_2','imunisasi2.id')
+            ->join('imunisasi as imunisasi3','pemeriksaan.imunisasi_id_3','imunisasi3.id')
+            ->join('bidan','pemeriksaan.bidan_id','bidan.id')
+            ->select('anak.nik_anak','imunisasi.jenis_imunisasi as imun1','imunisasi2.jenis_imunisasi as imun2',
+            'imunisasi3.jenis_imunisasi as imun3','bidan.id as id_bidan','bidan.nama as nama_bidan','pemeriksaan.*')
+            ->where('pemeriksaan.nik_anak',$id)
             ->get();
 
         if($pemeriksaan){
@@ -77,11 +80,13 @@ class PemeriksaanController extends Controller
         $pemeriksaan = DB::table('pemeriksaan')        
             ->leftJoin('anak','pemeriksaan.nik_anak','anak.nik_anak')
             ->leftJoin('imunisasi','pemeriksaan.imunisasi_id_1','imunisasi.id')
-            // ->rightJoin('imunisasi','pemeriksaan.imunisasi_id_1','imunisasi.id')
-            // ->rightJoin('imunisasi','pemeriksaan.imunisasi_id_3','imunisasi.id')
-            ->leftJoin('bidan','pemeriksaan.bidan_id','bidan.id')
+            ->join('imunisasi as imunisasi2','pemeriksaan.imunisasi_id_2','imunisasi2.id')
+            ->join('imunisasi as imunisasi3','pemeriksaan.imunisasi_id_3','imunisasi3.id')
+            ->join('bidan','pemeriksaan.bidan_id','bidan.id')
+            ->select('anak.nik_anak','imunisasi.jenis_imunisasi as imun1','imunisasi2.jenis_imunisasi as imun2',
+            'imunisasi3.jenis_imunisasi as imun3','anak.*','bidan.id as id_bidan','bidan.nama as nama_bidan','pemeriksaan.*')
             ->where('pemeriksaan.id',$id)
-            ->get();
+            ->first();
 
         if($pemeriksaan){
             return response()->json([
@@ -127,7 +132,7 @@ class PemeriksaanController extends Controller
             $periksa->delete();
             $data = [
                 'status' => true,
-                'pesan' => "Data Rujukan berhasil dihapus"
+                'pesan' => "Data Pemkes berhasil dihapus"
             ];
             return response()->json($data, 200);
         }else{
