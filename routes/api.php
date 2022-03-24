@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\API\Anak\AnakController;
 use App\Http\Controllers\API\bIDAN\JadwalImunisasicontroller;
 use App\Http\Controllers\API\Kader\JadwalPosyanducontroller;
 use App\Http\Controllers\API\ListController;
 use App\Http\Controllers\API\Ortu\NotifikasiController;
+use App\Http\Controllers\API\Ortu\OrangtuaController;
 use App\Http\Controllers\API\Pemeriksaan\PemeriksaanController;
 use App\Http\Controllers\API\Rujukan\RujukanController;
 use Illuminate\Http\Request;
@@ -35,6 +37,19 @@ Route::post('create-jadwal-posyandu',[JadwalPosyanducontroller::class,'create_ja
 
 // Fitur Pencarian
 Route::post('list-anak-cari',[testcontroller::class,'listanak']);
+Route::post('list-ortu-cari',[testcontroller::class,'searchListOrtu']);
+
+// Fitur Orangtua ( Kader )
+Route::get('ambil_semuadata-ortu',[OrangtuaController::class, 'ReadAll']);
+Route::get('show_dataOrtu/{id}',[OrangtuaController::class, 'show']);
+Route::put('ubah_dataOrtu/{id}',[OrangtuaController::class, 'updateProfilOrtu']);
+Route::put('ubah_dataOrtu_user/{id}',[OrangtuaController::class, 'updateProfilUserOrtu']);
+
+//Fitur Anak ( Orangtua )
+Route::get('ambil_data_anakortu/{id}',[AnakController::class, 'ReadAnakDariOrtu']);
+Route::get('ambil_data_anak/{id}',[AnakController::class, 'show']);
+Route::get('ambil_dataimunisasi_anak/{id}',[AnakController::class, 'showimunisasi']);
+Route::get('ambil_datastatusgizi_anak/{id}',[AnakController::class, 'showstatusgizi']);
 
 Route::get('list-status',[ListController::class,'status']);
 
