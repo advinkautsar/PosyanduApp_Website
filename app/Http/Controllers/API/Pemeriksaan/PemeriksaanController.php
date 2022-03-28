@@ -55,7 +55,7 @@ class PemeriksaanController extends Controller
             ->join('imunisasi as imunisasi3','pemeriksaan.imunisasi_id_3','imunisasi3.id')
             ->join('bidan','pemeriksaan.bidan_id','bidan.id')
             ->select('anak.nik_anak','imunisasi.jenis_imunisasi as imun1','imunisasi2.jenis_imunisasi as imun2',
-            'imunisasi3.jenis_imunisasi as imun3','bidan.id as id_bidan','bidan.nama as nama_bidan','pemeriksaan.*')
+            'imunisasi3.jenis_imunisasi as imun3','bidan.id as id_bidan','bidan.nama_bidan as nama_bidan','pemeriksaan.*')
             ->where('pemeriksaan.nik_anak',$id)
             ->get();
 
@@ -84,7 +84,7 @@ class PemeriksaanController extends Controller
             ->join('imunisasi as imunisasi3','pemeriksaan.imunisasi_id_3','imunisasi3.id')
             ->join('bidan','pemeriksaan.bidan_id','bidan.id')
             ->select('anak.nik_anak','imunisasi.jenis_imunisasi as imun1','imunisasi2.jenis_imunisasi as imun2',
-            'imunisasi3.jenis_imunisasi as imun3','anak.*','bidan.id as id_bidan','bidan.nama as nama_bidan','pemeriksaan.*')
+            'imunisasi3.jenis_imunisasi as imun3','anak.*','bidan.id as id_bidan','bidan.nama_bidan as nama_bidan','pemeriksaan.*')
             ->where('pemeriksaan.id',$id)
             ->first();
 

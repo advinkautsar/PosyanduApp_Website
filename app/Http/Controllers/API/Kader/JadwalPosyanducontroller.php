@@ -54,7 +54,7 @@ class JadwalPosyanducontroller extends Controller
             ];
             $notif = new Notif();
             // $id_user = User::where('role','orangtua')->get();
-            $id_user = User::get();
+            $id_user = User::where('role','orangtua')->get();
             $tokenList = Arr::pluck($id_user, 'token');
             $notif->sendNotifPosyandu($tokenList,"Hai Ibu ada kegiatan nih pada ". $jadwal->tanggal_kegiatan. "  Pada waktu ".$jadwal->waktu_kegiatan, "Notifikasi Posyandu" );
             // return "sukses";
