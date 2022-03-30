@@ -29,6 +29,7 @@ class CreatePemeriksaansTable extends Migration
             $table->enum('asi_ekslusif', ['Ya', 'Tidak']);
             $table->enum('oralit', ['Ya', 'Tidak']);
             $table->enum('obat_cacing', ['Ya', 'Tidak']);
+            $table->date('tanggal_pemeriksaan');
             $table->foreign('nik_anak')->references('nik_anak')->on('anak')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('bidan_id')->references('id')->on('bidan')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('imunisasi_id_1')->references('id')->on('imunisasi')->onDelete('cascade')->onUpdate('cascade');
@@ -42,8 +43,8 @@ class CreatePemeriksaansTable extends Migration
             'nik_anak'=>'3510210102990011',
             'bidan_id' =>'1',       
             'imunisasi_id_1' =>'1',       
-            'imunisasi_id_2' =>'2',       
-            'imunisasi_id_3' =>'3',       
+            'imunisasi_id_2' =>null,       
+            'imunisasi_id_3' =>null,       
             'vitA_merah' =>'Ya',       
             'vitA_biru' =>'Tidak',       
             'Fe_1' =>'Tidak',       
@@ -52,15 +53,16 @@ class CreatePemeriksaansTable extends Migration
             'asi_ekslusif' =>'Ya',       
             'oralit' =>'Ya',       
             'obat_cacing' =>'Tidak',       
+            'tanggal_pemeriksaan' =>'2022-03-20',       
         ]);
 
         DB::table('pemeriksaan')->insert([
             'id' =>2,
-            'nik_anak'=>'3510210102990012',
+            'nik_anak'=>'3510210102990011',
             'bidan_id' =>'1',       
-            'imunisasi_id_1' =>'1',       
-            'imunisasi_id_2' =>'2',       
-            'imunisasi_id_3' =>'2',       
+            'imunisasi_id_1' =>'2',       
+            'imunisasi_id_2' =>null,       
+            'imunisasi_id_3' =>null,       
             'vitA_merah' =>'Ya',       
             'vitA_biru' =>'Tidak',       
             'Fe_1' =>'Tidak',       
@@ -68,16 +70,18 @@ class CreatePemeriksaansTable extends Migration
             'PMT' =>'Tidak',       
             'asi_ekslusif' =>'Ya',       
             'oralit' =>'Ya',       
-            'obat_cacing' =>'Tidak',       
+            'obat_cacing' =>'Tidak',
+            'tanggal_pemeriksaan' =>'2022-04-20',       
+
         ]);
 
         DB::table('pemeriksaan')->insert([
             'id' =>3,
             'nik_anak'=>'3510210102990013',
             'bidan_id' =>'1',       
-            'imunisasi_id_1' =>'2',       
+            'imunisasi_id_1' =>'1',       
             'imunisasi_id_2' =>'2',       
-            'imunisasi_id_3' =>'2',       
+            'imunisasi_id_3' =>null,       
             'vitA_merah' =>'Ya',       
             'vitA_biru' =>'Tidak',       
             'Fe_1' =>'Tidak',       
@@ -85,7 +89,8 @@ class CreatePemeriksaansTable extends Migration
             'PMT' =>'Tidak',       
             'asi_ekslusif' =>'Ya',       
             'oralit' =>'Ya',       
-            'obat_cacing' =>'Tidak',       
+            'obat_cacing' =>'Tidak',
+            'tanggal_pemeriksaan' =>'2022-03-20',       
         ]);
 
 

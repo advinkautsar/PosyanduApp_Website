@@ -23,6 +23,8 @@ class Pemeriksaan extends Model
         'asi_ekslusif',
         'oralit',
         'obat_cacing',
+        'tanggal_pemeriksaan',
+
 
     ];
 

@@ -39,7 +39,11 @@ class AnakController extends Controller
 
     public function show($id)
     {
-        $anak = Anak::where('nik_anak',$id)->first();
+        $anak = DB::table('anak')        
+            ->leftJoin('orangtua','anak.orangtua_id','orangtua.id')
+            ->select('anak.*', 'orangtua.nama_ibu')
+            ->where('nik_anak', $id)
+            ->first();
     
         if($anak){
             return response()->json([
@@ -58,7 +62,16 @@ class AnakController extends Controller
 
     public function showimunisasi($id)
     {
-        $anak = Pemeriksaan::where('nik_anak',$id)->get();
+        // $anak = Pemeriksaan::where('nik_anak',$id)->get();
+        $anak = DB::table('pemeriksaan')
+            ->leftJoin('anak','pemeriksaan.nik_anak','anak.nik_anak')
+            ->leftJoin('imunisasi','pemeriksaan.imunisasi_id_1','imunisasi.id')
+            ->leftJoin('imunisasi as imunisasi2','pemeriksaan.imunisasi_id_2','imunisasi2.id')
+            ->leftJoin('imunisasi as imunisasi3','pemeriksaan.imunisasi_id_3','imunisasi3.id')
+            ->select('pemeriksaan.tanggal_pemeriksaan','imunisasi.jenis_imunisasi as imun1','imunisasi2.jenis_imunisasi as imun2',
+            'imunisasi3.jenis_imunisasi as imun3','pemeriksaan.nik_anak','pemeriksaan.id')
+            ->where('pemeriksaan.nik_anak', $id)->orderBy('id','DESC')
+            ->get();
 
         if($anak){
             return response()->json([
