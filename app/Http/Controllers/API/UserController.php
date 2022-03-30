@@ -173,15 +173,47 @@ class UserController extends Controller
         if($user){
             return response()->json([
                 'status'    => 'success',
-                'message'   => 'Data tersedia',
+                'message'   => 'Logout',
                 'data'      => $user
             ], 200);
         } else {
             return response()->json([
                 'status'    => 'failed',
-                'message'   => 'Data tidak tersedia',
+                'message'   => 'Gagal',
                 'data'      => []
             ], 404);
         }
+    }
+
+    public function logout($id){
+        $user =User::where('id',$id)->first();
+        $req = [
+            'token' =>null,
+        ];
+
+             
+        if($user){
+
+            $user->update($req);
+            $data = [
+             'status' => true,
+
+             'user' =>$user,
+         
+             'pesan' => "Logout"
+         ];
+         return response()->json($data);
+
+     }else{
+
+         $data = [
+             'status' => true,
+             
+             'pesan' => "Gagal"
+         ];
+         return response()->json($data);
+
+     }
+
     }
 }

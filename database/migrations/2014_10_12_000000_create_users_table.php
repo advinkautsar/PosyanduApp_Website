@@ -44,7 +44,7 @@ class CreateUsersTable extends Migration
 
             'id' =>3,
             'role'=>'orangtua',
-            'nama_pengguna' =>'Ega Dhesta',
+            'nama_pengguna' =>'Ega',
             'kata_sandi'=> bcrypt(123456),
         ]);
 

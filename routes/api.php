@@ -22,6 +22,8 @@ Route::post('/login', [UserController::class, 'login']);
 Route::post('/register', [UserController::class, 'register']);
 Route::post('update-akun-ortu',[UserController::class,'updateakunortu']);
 Route::post('cek-nik-ortu',[UserController::class,'ceknikortu']);
+Route::get('logout/{id}',[UserController::class,'logout']);
+
 
 // List dropdown
 Route::get('list-anak',[ListController::class,'listanak']);
