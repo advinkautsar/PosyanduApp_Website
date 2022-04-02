@@ -37,6 +37,32 @@ class RujukanController extends Controller
 
     }
 
+    public function readperanak($id)
+    {
+        $rujukan_anak = DB::table('rujukan')
+            ->leftJoin('anak','rujukan.nik_anak','anak.nik_anak')
+            ->leftJoin('puskesmas','rujukan.puskesmas_id','puskesmas.id')
+            ->leftJoin('posyandu','rujukan.tempat_pelayanan','posyandu.id')
+            ->leftJoin('bidan','rujukan.bidan_id','bidan.id')
+            ->select('puskesmas.*','bidan.nama_bidan as nama_bidan','posyandu.*','anak.nama_anak','rujukan.*')
+            ->where('rujukan.nik_anak',$id)
+            ->get();
+
+        if($rujukan_anak){
+            return response()->json([
+                'status'    => 'success',
+                'message'   => 'Data tersedia',
+                'data'      => $rujukan_anak
+            ], 200);
+        } else {
+            return response()->json([
+                'status'    => 'failed',
+                'message'   => 'Data tidak tersedia',
+                'data'      => []
+            ], 404);
+        }     
+    }
+
     public function read()
     {
         $rujukan_anak = DB::table('rujukan')        

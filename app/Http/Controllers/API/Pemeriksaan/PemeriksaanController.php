@@ -6,6 +6,7 @@ use App\Models\Pemeriksaan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\Rujukan;
 
 class PemeriksaanController extends Controller
 {
@@ -26,6 +27,7 @@ class PemeriksaanController extends Controller
             'asi_ekslusif'=>$request->asi_ekslusif,
             'oralit'=>$request->oralit,
             'obat_cacing'=>$request->obat_cacing,
+            'tanggal_pemeriksaan'=>$request->tanggal_pemeriksaan
 
 
         ]);
@@ -46,14 +48,23 @@ class PemeriksaanController extends Controller
 
     }
 
+    public function getall()
+    {
+        $pemeriksaan = Pemeriksaan::all();
+        return response()->json([
+            'message' => 'succes',
+            'data' => $pemeriksaan
+        ]);
+    }
+
     public function read($id)
     {
         $pemeriksaan = DB::table('pemeriksaan')        
-            ->join('anak','pemeriksaan.nik_anak','anak.nik_anak')
-            ->join('imunisasi','pemeriksaan.imunisasi_id_1','imunisasi.id')
-            ->join('imunisasi as imunisasi2','pemeriksaan.imunisasi_id_2','imunisasi2.id')
-            ->join('imunisasi as imunisasi3','pemeriksaan.imunisasi_id_3','imunisasi3.id')
-            ->join('bidan','pemeriksaan.bidan_id','bidan.id')
+            ->rightJoin('anak','pemeriksaan.nik_anak','anak.nik_anak')
+            ->leftJoin('imunisasi','pemeriksaan.imunisasi_id_1','imunisasi.id')
+            ->leftJoin('imunisasi as imunisasi2','pemeriksaan.imunisasi_id_2','imunisasi2.id')
+            ->leftJoin('imunisasi as imunisasi3','pemeriksaan.imunisasi_id_3','imunisasi3.id')
+            ->rightJoin('bidan','pemeriksaan.bidan_id','bidan.id')
             ->select('anak.nik_anak','imunisasi.jenis_imunisasi as imun1','imunisasi2.jenis_imunisasi as imun2',
             'imunisasi3.jenis_imunisasi as imun3','bidan.id as id_bidan','bidan.nama_bidan as nama_bidan','pemeriksaan.*')
             ->where('pemeriksaan.nik_anak',$id)
@@ -80,9 +91,9 @@ class PemeriksaanController extends Controller
         $pemeriksaan = DB::table('pemeriksaan')        
             ->leftJoin('anak','pemeriksaan.nik_anak','anak.nik_anak')
             ->leftJoin('imunisasi','pemeriksaan.imunisasi_id_1','imunisasi.id')
-            ->join('imunisasi as imunisasi2','pemeriksaan.imunisasi_id_2','imunisasi2.id')
-            ->join('imunisasi as imunisasi3','pemeriksaan.imunisasi_id_3','imunisasi3.id')
-            ->join('bidan','pemeriksaan.bidan_id','bidan.id')
+            ->leftJoin('imunisasi as imunisasi2','pemeriksaan.imunisasi_id_2','imunisasi2.id')
+            ->leftJoin('imunisasi as imunisasi3','pemeriksaan.imunisasi_id_3','imunisasi3.id')
+            ->leftJoin('bidan','pemeriksaan.bidan_id','bidan.id')
             ->select('anak.nik_anak','imunisasi.jenis_imunisasi as imun1','imunisasi2.jenis_imunisasi as imun2',
             'imunisasi3.jenis_imunisasi as imun3','anak.*','bidan.id as id_bidan','bidan.nama_bidan as nama_bidan','pemeriksaan.*')
             ->where('pemeriksaan.id',$id)

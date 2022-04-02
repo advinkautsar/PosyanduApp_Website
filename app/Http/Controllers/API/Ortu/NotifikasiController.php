@@ -52,7 +52,7 @@ class NotifikasiController extends Controller
         foreach($jadwal as $v){
             // $data['key1'] = $v->keterangan_kegiatan;
             $data[] = [
-                'key1' =>"Ada Pemberitahuan pada waktu ". $v->waktu_kegiatan." Wib. Ada kegiatan ". $v->keterangan_kegiatan,
+                'key1' =>"Pemberitahuan kegiatan posyandu pada waktu ". $v->waktu_kegiatan." Wib. Akan diadakan kegiatan ". $v->keterangan_kegiatan,
                 'key2' => $v->tanggal_kegiatan,
                 'key3' => "Jadwal Posyandu",
              ];
@@ -60,7 +60,7 @@ class NotifikasiController extends Controller
     
         foreach($imunisasi as $v2){
             $data2[] = [
-                'key1' => "Hai Ibu $v2->nama_pengguna ada  jadwal nih imunisasi " . $v2->jenis_imunisasi ." waktu :  ". $v2->waktu_imunisasi,
+                'key1' => "Hai Ibu $v2->nama_pengguna ada jadwal baru buat si kecil untuk melakukan imunisasi " . $v2->jenis_imunisasi ." Pada Tanggal :  ". $v2->waktu_imunisasi,
                 'key2' => $v2->tanggal_imunisasi,
                 'key3' => "Jadwal Imunisasi",
              ];

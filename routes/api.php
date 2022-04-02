@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\testcontroller;
+use App\Models\Pemeriksaan;
 
 // Route::middleware('auth:api')->get('/user', function (Request $request) {
 //     return $request->user();
@@ -68,6 +69,7 @@ Route::post('update-kartu-anak',[NotifikasiController::class,'up_no_kartu_anak']
 // CRUD Rujukan
 Route::post('tambah_datarujukan',[RujukanController::class, 'create']);
 Route::get('ambil_datarujukan',[RujukanController::class, 'read']);
+Route::get('ambil_datarujukan/{id}',[RujukanController::class, 'readperanak']);
 Route::get('show_datarujukan/{id}',[RujukanController::class, 'show']);
 Route::put('ubah_datarujukan/{id}',[RujukanController::class, 'update']);
 Route::delete('hapus_datarujukan/{id}',[RujukanController::class, 'delete']);
