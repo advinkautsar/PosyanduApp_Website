@@ -20,7 +20,11 @@ class ListController extends Controller
     //
     public function listanak(){
 
-        $anak = Anak::all();
+        $anak = DB::table('anak')        
+            ->leftJoin('orangtua','anak.orangtua_id','orangtua.id')
+            ->join('posyandu', 'orangtua.posyandu_id', '=', 'orangtua.posyandu_id')
+            ->select('anak.*', 'orangtua.nama_ibu','posyandu.nama_posyandu')
+            ->get();
      
         if($anak){
             return response()->json([

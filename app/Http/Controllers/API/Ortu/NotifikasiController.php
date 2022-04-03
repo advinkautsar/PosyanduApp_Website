@@ -36,13 +36,16 @@ class NotifikasiController extends Controller
         //         'data'      => []
         //     ], 404);
         // }
-        $jadwal = DB::table('jadwal')->orderBy('created_at','DESC')->get();
+        $jadwal = DB::table('jadwal')
+            ->join('posyandu','jadwal.posyandu_id','posyandu.id')
+            ->select('posyandu.nama_posyandu','jadwal.*')
+            ->orderBy('created_at','DESC')->get();
         $imunisasi = DB::table('jadwal_imunisasi')
         ->leftJoin('imunisasi','jadwal_imunisasi.imunisasi_id','imunisasi.id')
         ->leftJoin('anak','jadwal_imunisasi.nik_anak','anak.nik_anak')
         ->leftJoin('orangtua','anak.orangtua_id','orangtua.id')
         ->leftJoin('user','orangtua.user_id','user.id')
-        ->select('imunisasi.*','user.*','jadwal_imunisasi.created_at as waktune','jadwal_imunisasi.*')
+        ->select('imunisasi.*','user.*','anak.nama_anak','jadwal_imunisasi.created_at as waktune','jadwal_imunisasi.*')
         ->where('user.id',$id)->orderBy('jadwal_imunisasi.created_at','DESC')->get();
         
         $data=[];
@@ -52,16 +55,16 @@ class NotifikasiController extends Controller
         foreach($jadwal as $v){
             // $data['key1'] = $v->keterangan_kegiatan;
             $data[] = [
-                'key1' =>"Pemberitahuan kegiatan posyandu pada waktu ". $v->waktu_kegiatan." Wib. Akan diadakan kegiatan ". $v->keterangan_kegiatan,
-                'key2' => $v->tanggal_kegiatan,
+                'key1' =>"Hai ibu ada pemberitahuan kegiatan Posyandu di $v->nama_posyandu pada tanggal : $v->tanggal_kegiatan Pukul ". $v->waktu_kegiatan." Wib. Dengan Agenda kegiatan : ". $v->keterangan_kegiatan,
+                'key2' => "Jadwal Posyandu",
                 'key3' => "Jadwal Posyandu",
              ];
         }
     
         foreach($imunisasi as $v2){
             $data2[] = [
-                'key1' => "Hai Ibu $v2->nama_pengguna ada jadwal baru buat si kecil untuk melakukan imunisasi " . $v2->jenis_imunisasi ." Pada Tanggal :  ". $v2->waktu_imunisasi,
-                'key2' => $v2->tanggal_imunisasi,
+                'key1' => "Hai Ibu $v2->nama_pengguna ada jadwal untuk si kecil $v2->nama_anak untuk melakukan imunisasi " . $v2->jenis_imunisasi ." yang dilakukan saat si kecil berumur ". $v2->waktu_imunisasi." Besok, Pada Tanggal : " .$v2->tanggal_imunisasi,
+                'key2' => "Jadwal Imunisasi",
                 'key3' => "Jadwal Imunisasi",
              ];
         }

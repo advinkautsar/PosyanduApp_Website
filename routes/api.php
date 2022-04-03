@@ -53,7 +53,6 @@ Route::get('ambil_data_anakortu/{id}',[AnakController::class, 'ReadAnakDariOrtu'
 Route::get('ambil_data_anak/{id}',[AnakController::class, 'show']);
 Route::get('ambil_dataimunisasi_anak/{id}',[AnakController::class, 'showimunisasi']);
 Route::get('ambil_datastatusgizi_anak/{id}',[AnakController::class, 'showstatusgizi']);
-
 Route::get('list-status',[ListController::class,'status']);
 
 // Testing
