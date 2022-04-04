@@ -35,11 +35,37 @@ class CreatePenimbangansTable extends Migration
             'berat_badan' =>'12',       
             'tinggi_badan' =>'10',       
             'lingkar_kepala' =>'2',       
-            'status_bb_u' =>'Sehat',       
-            'status_tb_u' =>'Normal',       
+            'status_bb_u' =>'Berat Badan Kurang',       
+            'status_tb_u' =>'Tinggi Badan Normal',       
             'status_lk_u' =>'Normal',       
-            'status_bb_tb' =>'Normal',       
-            'status_imt_u' =>'Normal',          
+            'status_bb_tb' =>'Gizi Baik',       
+            'status_imt_u' =>'Gizi Baik',          
+        ]);
+
+         DB::table('penimbangan')->insert([
+            'id' =>2,
+            'nik_anak'=>'3510210102990011',
+            'berat_badan' =>'12',       
+            'tinggi_badan' =>'10',       
+            'lingkar_kepala' =>'2',       
+            'status_bb_u' =>'Berat Badan Normal',       
+            'status_tb_u' =>'Tinggi Badan Normal',       
+            'status_lk_u' =>'Normal',       
+            'status_bb_tb' =>'Gizi Baik',       
+            'status_imt_u' =>'Gizi Baik',          
+        ]);
+
+         DB::table('penimbangan')->insert([
+            'id' =>3,
+            'nik_anak'=>'3510210102990013',
+            'berat_badan' =>'12',       
+            'tinggi_badan' =>'10',       
+            'lingkar_kepala' =>'2',       
+            'status_bb_u' =>'Berat Badan Normal',       
+            'status_tb_u' =>'Tinggi Badan Normal',       
+            'status_lk_u' =>'Normal',       
+            'status_bb_tb' =>'Gizi Baik',       
+            'status_imt_u' =>'Gizi Baik',          
         ]);
     }
 

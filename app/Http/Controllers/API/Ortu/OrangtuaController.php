@@ -37,8 +37,11 @@ class OrangtuaController extends Controller
         $orangtua = DB::table('orangtua')        
             ->leftJoin('user','orangtua.user_id','user.id')
             ->leftJoin('posyandu','orangtua.posyandu_id','posyandu.id')
+            ->leftJoin('desa_kelurahan','orangtua.desa_kelurahan_id','desa_kelurahan.id')
+            ->leftJoin('kecamatan','orangtua.kecamatan_id','kecamatan.id')
+            ->select('posyandu.nama_posyandu','desa_kelurahan.nama','kecamatan.nama_kecamatan','orangtua.*')
             ->where('orangtua.id',$id)
-            ->get();
+            ->first();
         
             if($orangtua){
                 return response()->json([

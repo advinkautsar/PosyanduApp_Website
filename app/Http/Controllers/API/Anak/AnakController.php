@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\API\Anak;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 use App\Models\Anak;
 use App\Models\Orangtua;
 use App\Models\Pemeriksaan;
 use App\Models\Penimbangan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 
 class AnakController extends Controller
 {
@@ -90,8 +91,9 @@ class AnakController extends Controller
 
     public function showstatusgizi($id)
     {
-        $anak = Penimbangan::where('nik_anak',$id)->get();
-        
+        $anak = Penimbangan::where('nik_anak',$id)
+        ->get();
+
         if($anak){
             return response()->json([
                 'status'    => 'success',

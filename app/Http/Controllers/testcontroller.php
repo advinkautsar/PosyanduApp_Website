@@ -12,12 +12,9 @@ class testcontroller extends Controller
     //
     public function listanak(Request $request){
                   
-        // $anak = Anak::where('nama_anak', 'like', "%" . $request->anak . "%")
-        // ->get();
-
         $anak = DB::table('anak')        
-            ->leftJoin('orangtua','anak.orangtua_id','orangtua.id')
-            ->join('posyandu', 'orangtua.posyandu_id', '=', 'orangtua.posyandu_id')
+            ->join('orangtua','anak.orangtua_id','orangtua.id')
+            ->join('posyandu', 'orangtua.posyandu_id','=','posyandu.id')
             ->select('orangtua.nama_ibu','posyandu.nama_posyandu','anak.*')
             ->where('nama_anak', 'like', "%" . $request->anak . "%")
             ->get();
@@ -39,8 +36,15 @@ class testcontroller extends Controller
 
     public function searchListOrtu(Request $request){
 
-        $ortu = Orangtua::where('nama_ibu', 'like', "%" . $request->orangtua . "%")
-        ->get();
+        // $ortu = Orangtua::where('nama_ibu', 'like', "%" . $request->orangtua . "%")
+        // ->get();
+
+        $ortu = DB::table('orangtua')
+           ->join('posyandu','orangtua.posyandu_id','posyandu.id')
+           ->select('posyandu.nama_posyandu','orangtua.*')
+            ->where('nama_ibu', 'like', "%" . $request->orangtua . "%")
+           ->get();
+
      
         if($ortu){
             return response()->json([

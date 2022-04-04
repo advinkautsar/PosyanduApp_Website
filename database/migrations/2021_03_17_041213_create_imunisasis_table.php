@@ -17,7 +17,7 @@ class CreateImunisasisTable extends Migration
         Schema::create('imunisasi', function (Blueprint $table) {
             $table->id();
             $table->string("jenis_imunisasi");
-            $table->string("waktu_imunisasi");
+            $table->string("waktu_imunisasi")->nullable();
             $table->timestamps();
         });
 
@@ -37,6 +37,12 @@ class CreateImunisasisTable extends Migration
             'id' =>3,
             'jenis_imunisasi'=>'Polio Tetes',
             'waktu_imunisasi' =>'4 bulan',       
+        ]);
+
+        DB::table('imunisasi')->insert([
+            'id' =>4,
+            'jenis_imunisasi'=>'Tidak',
+            'waktu_imunisasi' =>null,       
         ]);
     }
 
