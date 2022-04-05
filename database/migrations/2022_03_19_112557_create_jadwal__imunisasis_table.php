@@ -22,7 +22,6 @@ class CreateJadwalImunisasisTable extends Migration
             $table->foreign('nik_anak')->references('nik_anak')->on('anak')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('bidan_id')->references('id')->on('bidan')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('imunisasi_id')->references('id')->on('imunisasi')->onDelete('cascade')->onUpdate('cascade');
-
             $table->timestamps();
         });
     }

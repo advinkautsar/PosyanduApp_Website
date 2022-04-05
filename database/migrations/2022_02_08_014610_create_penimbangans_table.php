@@ -40,6 +40,7 @@ class CreatePenimbangansTable extends Migration
             'status_lk_u' =>'Normal',       
             'status_bb_tb' =>'Gizi Baik',       
             'status_imt_u' =>'Gizi Baik',          
+            'created_at'=> '2022-04-05',
         ]);
 
          DB::table('penimbangan')->insert([
@@ -53,6 +54,8 @@ class CreatePenimbangansTable extends Migration
             'status_lk_u' =>'Normal',       
             'status_bb_tb' =>'Gizi Baik',       
             'status_imt_u' =>'Gizi Baik',          
+            'created_at'=> '2022-04-28',
+
         ]);
 
          DB::table('penimbangan')->insert([
@@ -66,6 +69,8 @@ class CreatePenimbangansTable extends Migration
             'status_lk_u' =>'Normal',       
             'status_bb_tb' =>'Gizi Baik',       
             'status_imt_u' =>'Gizi Baik',          
+            'created_at'=> '2022-04-18',
+
         ]);
     }
 

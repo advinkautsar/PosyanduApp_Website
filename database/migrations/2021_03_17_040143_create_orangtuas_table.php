@@ -78,6 +78,21 @@ class CreateOrangtuasTable extends Migration
             'rt' =>'01',        
             'rw' =>'03',             
         ]);
+
+        DB::table('orangtua')->insert([
+            'id' =>4,
+            'desa_kelurahan_id'=>'1',
+            'kecamatan_id'=>'1',
+            'posyandu_id'=>'2',
+            'user_id' =>'5',
+            'nik_ayah' =>'3510210102990020',            
+            'nama_ayah' =>'Bondolan',
+            'nik_ibu' =>'3510210102990021',  
+            'nama_ibu' =>'Mbak Bondol',          
+            'alamat' =>'jl. blimbing 1',        
+            'rt' =>'01',        
+            'rw' =>'03',             
+        ]);
     }
 
     /**
