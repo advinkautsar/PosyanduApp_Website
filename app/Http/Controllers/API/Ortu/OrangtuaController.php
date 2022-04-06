@@ -59,56 +59,58 @@ class OrangtuaController extends Controller
 
     }
 
-    public function updateProfilOrtu(Request $request,$id)
+    public function showprofilortu($id)
     {
-        $orangtua = Orangtua::find($id);
-        $orangtua->update($request->all());
+        $ortu = DB::table('orangtua')        
+                ->leftJoin('user','orangtua.user_id','user.id')
+                ->leftJoin('kecamatan','orangtua.kecamatan_id','kecamatan.id')
+                ->leftJoin('desa_kelurahan','orangtua.desa_kelurahan_id','desa_kelurahan.id')
+                ->select('user.nama_pengguna','user.kata_sandi','user.no_hp','kecamatan.nama_kecamatan',
+                'desa_kelurahan.nama','orangtua.*')
+                ->where('user_id',$id)
+                ->first();
 
-        if ($orangtua) {
+        if($ortu){
+            return response()->json([
+                'status'    => 'success',
+                'message'   => 'Data tersedia',
+                'data'      => $ortu
+            ], 200);
+        } else {
+            return response()->json([
+                'status'    => 'failed',
+                'message'   => 'Data tidak tersedia',
+                'data'      => []
+            ], 404);
+        }
+    }
+
+    public function updateProfilOrtu(Request $request,$id)
+    {        
+        $orangtua = Orangtua::where('user_id',$id)->first();
+            $updateortu= $orangtua->update($request->all());
+
+        $user = User::where('id',$orangtua->user_id)->first();
+            $updateuser = $user->update($request->all());
+
+        if($updateortu || $updateuser){
+                        
             $data = [
                 'status' => true,
-                'pesan' => "Data Profil orangtua berhasil diubah"
+                'pesan' => "Data Diri berhasil diubah"
             ];
             return response()->json($data, 200);
-        } else {
-            $data = [
-                'status' => true,
-                'pesan' => "Gagal Merubah Data orangtua"
-            ];
-            return response()->json($data, 404);
-        }    
-    }
-
-    public function updateProfilUserOrtu(Request $request, $id)
-    {
-        $ortu = Orangtua::where('id',$request->id)->first();
-        $user = User::where('id',$ortu->user_id)->first();
-
-        
-        if($ortu){
-
-            $user->update([
-                'nama_pengguna'=>$request->nama_pengguna,
-                'kata_sandi'=>bcrypt($request->kata_sandi),
-                'no_hp'=>$request->no_hp,
-                'token'=>$request->token,
-            ]);
-            
-               $data = [
-                'succes'    => 1,
-                'message'   => 'Update Berhasil',
-                'user'      => $user,
-            ];
-            return response()->json($data);
 
         }else{
-
+            
             $data = [
                 'status' => true,
-                'pesan' => "Gagal update akun"
+                'pesan' => "Perubahan Data Diri Gagal"
             ];
             return response()->json($data);
-
-        }    
+        }     
+        
     }
+
+    
 }

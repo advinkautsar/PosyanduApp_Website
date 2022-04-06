@@ -44,8 +44,8 @@ class CreateUsersTable extends Migration
 
             'id' =>3,
             'role'=>'orangtua',
-            'nama_pengguna' =>'Ega',
-            'kata_sandi'=> bcrypt(123456),
+            'nama_pengguna' =>'Berda',
+            'kata_sandi'=> bcrypt(123),
         ]);
 
         DB::table('user')->insert([

@@ -5,8 +5,10 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Models\Anak;
 use App\Models\Bidan;
+use App\Models\Desa_kelurahan;
 use App\Models\Imunisasi;
 use App\Models\Jadwal_Imunisasi;
+use App\Models\Kecamatan;
 use App\Models\Notif;
 use App\Models\Orangtua;
 use App\Models\Posyandu;
@@ -123,6 +125,47 @@ class ListController extends Controller
         }
 
 
+    }
+
+    public function listKecamatan()             
+    {       
+        $kec = Kecamatan::all();
+
+        if($kec){
+            return response()->json([
+                'status'    => 'success',
+                'message'   => 'Data tersedia',
+                'data'      => $kec
+            ], 200);
+        } else {
+            return response()->json([
+                'status'    => 'failed',
+                'message'   => 'Data tidak tersedia',
+                'data'      => []
+            ], 404);
+        }
+
+
+    }
+
+    public function listDesa()
+    {       
+        $desa = Desa_kelurahan::all();
+        if($desa){
+            return response()->json([
+                'status'    => 'success',
+                'message'   => 'Data tersedia',
+                'data'      => $desa
+            ], 200);
+        } else {
+            return response()->json([
+                'status'    => 'failed',
+                'message'   => 'Data tidak tersedia',
+                'data'      => []
+            ], 404);
+        }
+
+        
     }
 
     public function create_imunisasi(Request $request){

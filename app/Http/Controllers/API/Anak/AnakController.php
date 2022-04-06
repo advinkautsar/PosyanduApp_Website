@@ -17,12 +17,12 @@ class AnakController extends Controller
     {
         $anak = DB::table('anak')        
             ->leftJoin('orangtua','anak.orangtua_id','orangtua.id')
-            ->join('posyandu', 'orangtua.posyandu_id', '=', 'orangtua.posyandu_id')
+            ->join('posyandu', 'orangtua.posyandu_id', '=', 'posyandu.id')
             ->select('anak.*', 'orangtua.nama_ibu','posyandu.nama_posyandu')
             ->where('orangtua_id', $id)
             ->get();
 
-
+            
         if($anak){
             return response()->json([
                 'status'    => 'success',

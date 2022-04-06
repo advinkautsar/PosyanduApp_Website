@@ -32,6 +32,8 @@ Route::get('list-ortu',[ListController::class,'listOrtu']);
 Route::get('list-imunisasi',[ListController::class,'listImunisasi']);
 Route::get('list-puskesmas',[ListController::class,'listPuskesmas']);
 Route::get('list-bidan',[ListController::class,'listBidan']);
+Route::get('list-kecamatan',[ListController::class,'listKecamatan']);
+Route::get('list-desa',[ListController::class,'listDesa']);
 
 //CRUD Notifikasi Jadwal Posyandu
 Route::get('list-posyandu',[JadwalPosyanducontroller::class,'listposyandu']);
@@ -84,3 +86,6 @@ Route::delete('hapus_dataPemeriksaan/{id}',[PemeriksaanController::class, 'delet
 Route::get('get_user_ortu/{id}', [UserController::class,'getUserRelasiOrtu']);
 Route::get('get_user_bidan/{id}', [UserController::class,'getUserRelasiBidan']);
 Route::get('get_user_kader/{id}', [UserController::class,'getUserRelasiKader']);
+
+//Fitur Profil Ortu ( Orangtua )
+Route::get('get_profil_ortu/{id}',[OrangtuaController::class,'showprofilortu']);

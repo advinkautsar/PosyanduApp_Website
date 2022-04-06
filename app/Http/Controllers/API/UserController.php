@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Http\Controllers\Controller;
+use App\Models\Anak;
+use App\Models\User;
 use App\Models\Bidan;
 use App\Models\Kader;
 use App\Models\Orangtua;
-use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
@@ -132,12 +134,19 @@ class UserController extends Controller
     public function getUserRelasiOrtu($id)
     {
         $user = Orangtua::where('user_id',$id)->first();
+        $anak = DB::table('anak')        
+                ->leftJoin('orangtua','anak.orangtua_id','orangtua.id')
+                ->join('posyandu', 'orangtua.posyandu_id', '=', 'posyandu.id')
+                ->select('anak.*', 'orangtua.nama_ibu','posyandu.nama_posyandu')
+                ->where('orangtua_id',$user->id)
+                ->get();
+        
         
         if($user){
             return response()->json([
                 'status'    => 'success',
                 'message'   => 'Data tersedia',
-                'data'      => $user
+                'data'      => $anak
             ], 200);
         } else {
             return response()->json([
