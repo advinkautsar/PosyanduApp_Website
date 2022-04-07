@@ -88,10 +88,24 @@ class OrangtuaController extends Controller
     public function updateProfilOrtu(Request $request,$id)
     {        
         $orangtua = Orangtua::where('user_id',$id)->first();
-            $updateortu= $orangtua->update($request->all());
+            $updateortu= $orangtua->update([
+                'nik_ayah'=>$request->nik_ayah,
+                'nama_ayah'=>$request->nama_ayah,
+                'nik_ibu'=>$request->nik_ibu,
+                'nama_ibu'=>$request->nama_ibu,
+                'alamat'=>$request->alamat,
+                'rt'=>$request->rt,
+                'rw'=>$request->rw,
+                'kecamatan_id'=>$request->kecamatan_id,
+                'desa_kelurahan_id'=>$request->desa_kelurahan_id,
+            ]);
 
         $user = User::where('id',$orangtua->user_id)->first();
-            $updateuser = $user->update($request->all());
+            $updateuser = $user->update([
+                'nama_pengguna'=>$request->nama_pengguna,
+                'kata_sandi'=>bcrypt($request->kata_sandi),
+                'no_hp'=>$request->no_hp,
+            ]);
 
         if($updateortu || $updateuser){
                         

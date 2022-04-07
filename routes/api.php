@@ -89,3 +89,4 @@ Route::get('get_user_kader/{id}', [UserController::class,'getUserRelasiKader']);
 
 //Fitur Profil Ortu ( Orangtua )
 Route::get('get_profil_ortu/{id}',[OrangtuaController::class,'showprofilortu']);
+Route::post('updateProfilOrtu/{id}',[OrangtuaController::class,'updateProfilOrtu']);
