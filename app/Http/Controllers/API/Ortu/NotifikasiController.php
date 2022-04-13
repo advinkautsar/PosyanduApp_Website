@@ -57,7 +57,7 @@ class NotifikasiController extends Controller
             $data[] = [
                 'key1' =>"Hai ibu ada pemberitahuan kegiatan Posyandu di $v->nama_posyandu pada tanggal : $v->tanggal_kegiatan Pukul ". $v->waktu_kegiatan." Wib. Dengan Agenda kegiatan : ". $v->keterangan_kegiatan,
                 'key2' => "Jadwal Posyandu",
-                'key3' => "Jadwal Posyandu",
+                'key3' => $v->created_at,
              ];
         }
     
@@ -65,13 +65,13 @@ class NotifikasiController extends Controller
             $data2[] = [
                 'key1' => "Hai Ibu $v2->nama_pengguna ada jadwal untuk si kecil $v2->nama_anak untuk melakukan imunisasi " . $v2->jenis_imunisasi ." yang dilakukan saat si kecil berumur ". $v2->waktu_imunisasi." Besok, Pada Tanggal : " .$v2->tanggal_imunisasi,
                 'key2' => "Jadwal Imunisasi",
-                'key3' => "Jadwal Imunisasi",
+                'key3' => $v2->created_at,
              ];
         }
 
         $data_akhir = collect();
         $data_akhir->push($data, $data2);
-        $data_akhir = $data_akhir->collapse()->sortByDesc('key2')->values()->all();
+        $data_akhir = $data_akhir->collapse()->sortByDesc('key3')->values()->all();
      
         
         // return $data_akhir;

@@ -58,7 +58,9 @@ class JadwalPosyanducontroller extends Controller
 
             $id_user =DB::table('orangtua')->leftJoin('user','orangtua.user_id','user.id')->select('orangtua.*','user.*')->where('role','orangtua')->where('posyandu_id',$jadwal->posyandu_id)->get();
             $tokenList = Arr::pluck($id_user, 'token');
-            $notif->sendNotifPosyandu($tokenList,"Hai Ibu ada kegiatan nih pada ". $jadwal->tanggal_kegiatan. "  Pada waktu ".$jadwal->waktu_kegiatan, "Notifikasi Posyandu" );
+            $notif->sendNotifPosyandu($tokenList,"Hai Ibu ada agenda kegiatan posyandu nih, yang diadakan pada tanggal :"
+            . $jadwal->tanggal_kegiatan. "  Pada Pukul : ".$jadwal->waktu_kegiatan. " Jangan sampai terlewat ya !",
+             "Notifikasi Posyandu" );
             // return "sukses";
             return response()->json($data);
 
