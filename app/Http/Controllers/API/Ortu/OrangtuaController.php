@@ -126,5 +126,55 @@ class OrangtuaController extends Controller
         
     }
 
+     public function showprofilortu_kader($id)
+    {
+        $ortu = DB::table('orangtua')        
+                ->leftJoin('kecamatan','orangtua.kecamatan_id','kecamatan.id')
+                ->leftJoin('desa_kelurahan','orangtua.desa_kelurahan_id','desa_kelurahan.id')
+                ->select('kecamatan.nama_kecamatan',
+                'desa_kelurahan.nama','orangtua.*')
+                ->where($id)
+                ->first();
+
+        if($ortu){
+            return response()->json([
+                'status'    => 'success',
+                'message'   => 'Data tersedia',
+                'data'      => $ortu
+            ], 200);
+        } else {
+            return response()->json([
+                'status'    => 'failed',
+                'message'   => 'Data tidak tersedia',
+                'data'      => []
+            ], 404);
+        }
+    }
+
+    public function ubah_persetujuanOrtu(Request $request,$id)
+    {
+         $ortu = Orangtua::find($id);
+            $ortu->update([
+                'status_persetujuan'=>$request->status_persetujuan
+            ]);
+
+        if($ortu){
+                        
+            $data = [
+                'status' => true,
+                'pesan' => "Data Diri orangtua berhasil diubah"
+            ];
+            return response()->json($data, 200);
+
+        }else{
+            
+            $data = [
+                'status' => true,
+                'pesan' => "Perubahan Data Diri Orangtua Gagal"
+            ];
+            return response()->json($data);
+        }     
+    }
+
     
 }

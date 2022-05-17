@@ -46,6 +46,7 @@ class RujukanController extends Controller
             ->leftJoin('bidan','rujukan.bidan_id','bidan.id')
             ->select('puskesmas.*','bidan.nama_bidan as nama_bidan','posyandu.*','anak.nama_anak','rujukan.*')
             ->where('rujukan.nik_anak',$id)
+            ->orderBy('rujukan.id','desc')
             ->get();
 
         if($rujukan_anak){
@@ -71,6 +72,7 @@ class RujukanController extends Controller
             ->leftJoin('posyandu','rujukan.tempat_pelayanan','posyandu.id')
             ->leftJoin('bidan','rujukan.bidan_id','bidan.id')
             ->select('puskesmas.*','bidan.nama_bidan as nama_bidan','posyandu.*','anak.nama_anak','rujukan.*')
+            ->orderBy('rujukan.id','desc')
             ->get();
 
         if($rujukan_anak){

@@ -25,7 +25,8 @@ class ListController extends Controller
         $anak = DB::table('anak')        
             ->leftJoin('orangtua','anak.orangtua_id','orangtua.id')
             ->join('posyandu', 'orangtua.posyandu_id', '=', 'posyandu.id')
-            ->select('anak.*', 'orangtua.nama_ibu','posyandu.nama_posyandu')
+            ->select('anak.*', 'orangtua.nama_ibu','orangtua.status_persetujuan','posyandu.nama_posyandu')
+            ->where('status_persetujuan','=','disetujui')
             ->get();
      
         if($anak){
@@ -43,9 +44,34 @@ class ListController extends Controller
         }
     }
 
-    public function listOrtu()
+    public function listOrtu_setuju()
     {
-        $ortu = Orangtua::all();
+        $ortu = DB::table('orangtua')
+                ->where('status_persetujuan','=','disetujui')
+                ->get();
+
+        if($ortu){
+            return response()->json([
+                'status'    => 'success',
+                'message'   => 'Data tersedia',
+                'data'      => $ortu
+            ], 200);
+        } else {
+            return response()->json([
+                'status'    => 'failed',
+                'message'   => 'Data tidak tersedia',
+                'data'      => []
+            ], 404);
+        }
+
+
+    }
+
+    public function listOrtu_belum()
+    {
+        $ortu = DB::table('orangtua')
+                ->where('status_persetujuan','=','belum disetujui')
+                ->get();
 
         if($ortu){
             return response()->json([
@@ -213,7 +239,28 @@ class ListController extends Controller
     }
 
     public function status(){
-        $array = array(array('status' => 'Ya'), array('status' => 'Tidak'));
+        $array = array(
+            array('status' => 'Ya'), 
+            array('status' => 'Tidak')
+        );
+         if($array){
+            return response()->json([
+                'status'    => 'success',
+                'message'   => 'Data tersedia',
+                'data'      => $array
+            ], 200);
+        } else {
+            return response()->json([
+                'status'    => 'failed',
+                'message'   => 'Data tidak tersedia',
+                'data'      => []
+            ], 404);
+        }
+
+    }
+
+    public function jenis_kelamin(){
+        $array = array(array('jenis_kelamin' => 'L'), array('jenis_kelamin' => 'P'));
  
     //    return $array;
 
@@ -231,6 +278,27 @@ class ListController extends Controller
             ], 404);
         }
 
+    }
+
+    public function status_persetujuan(){
+        $array = array(
+            array('status_persetujuan'=>'disetujui'), 
+            array('status_persetujuan'=>'belum disetujui')
+        );
+
+        if($array){
+            return response()->json([
+                'status'    => 'success',
+                'message'   => 'Data tersedia',
+                'data'      => $array
+            ], 200);
+        } else {
+            return response()->json([
+                'status'    => 'failed',
+                'message'   => 'Data tidak tersedia',
+                'data'      => []
+            ], 404);
+        }
     }
 
     

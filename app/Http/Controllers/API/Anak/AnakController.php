@@ -92,6 +92,7 @@ class AnakController extends Controller
     public function showstatusgizi($id)
     {
         $anak = Penimbangan::where('nik_anak',$id)
+        ->orderBy('id','DESC')
         ->get();
 
         if($anak){
@@ -106,6 +107,57 @@ class AnakController extends Controller
                 'message'   => 'Data tidak tersedia',
                 'data'      => []
             ], 404);
+        }
+    }
+
+    public function create_timbang(Request $request)
+    {
+        $data_baru = Penimbangan::create([
+            'nik_anak'=>$request->nik_anak,
+            'berat_badan'=>$request->berat_badan,
+            'tinggi_badan'=>$request->tinggi_badan,
+            'lingkar_kepala'=>$request->lingkar_kepala,
+        ]);
+        if ($data_baru) {
+            $data = [
+                'status' => true,
+                'pesan' => "Berhasil Mendaftarkan Data baru pengukuran dan penimbangan anak"
+            ];
+            return response()->json($data);
+        } else {
+            $data = [
+                'status' => true,
+                'pesan' => "Gagal Mendaftarkan data baru"
+            ];
+            return response()->json($data);
+        }
+    }
+
+    public function create_anak(Request $request)
+    {
+        $data_anak = Anak::create([
+            'nik_anak'=>$request->nik_anak,
+            'orangtua_id'=>$request->orangtua_id,
+            'nama_anak'=>$request->nama_anak,
+            'jenis_kelamin'=>$request->jenis_kelamin,
+            'tanggal_lahir'=>$request->tanggal_lahir,
+            'berat_lahir'=>$request->berat_lahir,
+            'panjang_lahir'=>$request->panjang_lahir,
+
+        ]);
+
+        if ($data_anak) {
+            $data = [
+                'status' => true,
+                'pesan' => "Berhasil Mendaftarkan Data baru pengukuran dan penimbangan anak"
+            ];
+            return response()->json($data);
+        } else {
+            $data = [
+                'status' => true,
+                'pesan' => "Gagal Mendaftarkan data baru"
+            ];
+            return response()->json($data);
         }
     }
 

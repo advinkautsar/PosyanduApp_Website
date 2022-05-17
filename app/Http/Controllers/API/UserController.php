@@ -131,7 +131,7 @@ class UserController extends Controller
         }
     }
 
-    public function getUserRelasiOrtu($id)
+    public function getOrtuRelasiAnak($id)
     {
         $user = Orangtua::where('user_id',$id)->first();
         $anak = DB::table('anak')        
@@ -179,10 +179,29 @@ class UserController extends Controller
     public function getUserRelasiKader($id)
     {
         $user = Kader::where('user_id',$id)->first();
+
         if($user){
             return response()->json([
                 'status'    => 'success',
                 'message'   => 'Logout',
+                'data'      => $user
+            ], 200);
+        } else {
+            return response()->json([
+                'status'    => 'failed',
+                'message'   => 'Gagal',
+                'data'      => []
+            ], 404);
+        }
+    }
+
+    public function getUserRelasiOrtu($id)
+    {
+        $user = Orangtua::where('user_id',$id)->first();
+        if($user){
+            return response()->json([
+                'status'    => 'success',
+                'message'   => 'Data Tersedia',
                 'data'      => $user
             ], 200);
         } else {
@@ -224,5 +243,58 @@ class UserController extends Controller
 
      }
 
+    }
+
+    public function registrasi(Request $request)
+    {
+        $create_akun = User::create([
+            'nama_pengguna'=>$request->nama_pengguna,
+            'kata_sandi'=>bcrypt($request->kata_sandi),
+            'no_hp'=>$request->no_hp,   
+            'token'=>$request->token,
+        ]);
+
+        $create_ortu = Orangtua::create([
+            'nik_ayah'=>$request->nik_ayah,
+            'nama_ayah'=>$request->nama_ayah,
+            'nik_ibu'=>$request->nik_ibu,
+            'nama_ibu'=>$request->nama_ibu,
+            'alamat'=>$request->alamat,
+            'rt'=>$request->rt,
+            'rw'=>$request->rw,
+            'user_id'=>$create_akun->id,
+            'posyandu_id'=>$request->posyandu_id,
+            'desa_kelurahan_id'=>$request->desa_kelurahan_id,
+            'kecamatan_id'=>$request->kecamatan_id,
+        ]);
+
+        $create_anak = Anak::create([
+            'nik_anak'=>$request->nik_anak,
+            'orangtua_id'=>$create_ortu->id,
+            'nama_anak'=>$request->nama_anak,
+            'jenis_kelamin'=>$request->jenis_kelamin,
+            'tanggal_lahir'=>$request->tanggal_lahir,
+            'berat_lahir'=>$request->berat_lahir,
+            'panjang_lahir'=>$request->panjang_lahir,
+        ]);
+
+        if($create_akun || $create_ortu || $create_anak){
+                        
+            $data = [
+                'succes'    => 1,
+                'message'   => 'Pendaftaran pengguna berhasil',
+                'user'      => $create_akun,
+
+            ];
+            return response()->json($data, 200);
+
+        }else{
+            
+            $data = [
+                'status' => 0,
+                'pesan' => "Pendaftaran gagal"
+            ];
+            return response()->json($data);
+        }     
     }
 }

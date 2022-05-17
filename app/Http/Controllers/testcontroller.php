@@ -15,7 +15,8 @@ class testcontroller extends Controller
         $anak = DB::table('anak')        
             ->join('orangtua','anak.orangtua_id','orangtua.id')
             ->join('posyandu', 'orangtua.posyandu_id','=','posyandu.id')
-            ->select('orangtua.nama_ibu','posyandu.nama_posyandu','anak.*')
+            ->select('orangtua.nama_ibu','orangtua.status_persetujuan','posyandu.nama_posyandu','anak.*')
+            ->where('status_persetujuan','=','disetujui')
             ->where('nama_anak', 'like', "%" . $request->anak . "%")
             ->get();
      
@@ -42,7 +43,35 @@ class testcontroller extends Controller
         $ortu = DB::table('orangtua')
            ->join('posyandu','orangtua.posyandu_id','posyandu.id')
            ->select('posyandu.nama_posyandu','orangtua.*')
-            ->where('nama_ibu', 'like', "%" . $request->orangtua . "%")
+           ->where('nama_ibu', 'like', "%" . $request->orangtua . "%")
+           ->get();
+
+     
+        if($ortu){
+            return response()->json([
+                'status'    => 'success',
+                'message'   => 'Data tersedia',
+                'data'      => $ortu
+            ], 200);
+        } else {
+            return response()->json([
+                'status'    => 'failed',
+                'message'   => 'Data tidak tersedia',
+                'data'      => []
+            ], 404);
+        }
+    }
+
+    public function searchListOrtuAprove(Request $request){
+
+        // $ortu = Orangtua::where('nama_ibu', 'like', "%" . $request->orangtua . "%")
+        // ->get();
+
+        $ortu = DB::table('orangtua')
+           ->join('posyandu','orangtua.posyandu_id','posyandu.id')
+           ->select('posyandu.nama_posyandu','orangtua.*')
+           ->where('status_persetujuan','=','disetujui')
+           ->where('nama_ibu', 'like', "%" . $request->orangtua . "%")
            ->get();
 
      

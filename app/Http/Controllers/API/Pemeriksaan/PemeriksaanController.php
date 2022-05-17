@@ -68,6 +68,7 @@ class PemeriksaanController extends Controller
             ->select('anak.nik_anak','imunisasi.jenis_imunisasi as imun1','imunisasi2.jenis_imunisasi as imun2',
             'imunisasi3.jenis_imunisasi as imun3','bidan.id as id_bidan','bidan.nama_bidan as nama_bidan','pemeriksaan.*')
             ->where('pemeriksaan.nik_anak',$id)
+            ->orderBy('pemeriksaan.id','desc')
             ->get();
 
         if($pemeriksaan){

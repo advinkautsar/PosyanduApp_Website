@@ -17,7 +17,7 @@ class CreateAnaksTable extends Migration
         Schema::create('anak', function (Blueprint $table) {
             $table->id("nik_anak");
             $table->bigInteger("orangtua_id")->unsigned()->nullable();
-            $table->string("no_kartu");
+            $table->string("no_kartu")->nullable();
             $table->string("nama_anak");
             $table->enum('jenis_kelamin', ['L', 'P']);
             $table->date("tanggal_lahir");

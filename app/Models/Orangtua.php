@@ -17,6 +17,7 @@ class Orangtua extends Model
         'alamat',
         'rt',
         'rw',
+        'status_persetujuan',
         'user_id',
         'posyandu_id',
         'desa_kelurahan_id',

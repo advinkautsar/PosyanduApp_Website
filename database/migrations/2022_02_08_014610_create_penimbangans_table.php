@@ -20,11 +20,11 @@ class CreatePenimbangansTable extends Migration
             $table->float("berat_badan");
             $table->float("tinggi_badan");
             $table->float("lingkar_kepala");
-            $table->string("status_bb_u");
-            $table->string("status_tb_u");
-            $table->string("status_lk_u");
-            $table->string("status_bb_tb");
-            $table->string("status_imt_u");
+            $table->string("status_bb_u")->nullable();
+            $table->string("status_tb_u")->nullable();
+            $table->string("status_lk_u")->nullable();
+            $table->string("status_bb_tb")->nullable();
+            $table->string("status_imt_u")->nullable();
             $table->foreign('nik_anak')->references('nik_anak')->on('anak')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
@@ -32,9 +32,9 @@ class CreatePenimbangansTable extends Migration
         DB::table('penimbangan')->insert([
             'id' =>1,
             'nik_anak'=>'3510210102990012',
-            'berat_badan' =>'12',       
-            'tinggi_badan' =>'10',       
-            'lingkar_kepala' =>'2',       
+            'berat_badan' =>'4.40',       
+            'tinggi_badan' =>'54',       
+            'lingkar_kepala' =>'0.00',       
             'status_bb_u' =>'Berat Badan Kurang',       
             'status_tb_u' =>'Tinggi Badan Normal',       
             'status_lk_u' =>'Normal',       
@@ -46,8 +46,8 @@ class CreatePenimbangansTable extends Migration
          DB::table('penimbangan')->insert([
             'id' =>2,
             'nik_anak'=>'3510210102990011',
-            'berat_badan' =>'12',       
-            'tinggi_badan' =>'10',       
+            'berat_badan' =>'4.40',       
+            'tinggi_badan' =>'54',       
             'lingkar_kepala' =>'2',       
             'status_bb_u' =>'Berat Badan Normal',       
             'status_tb_u' =>'Tinggi Badan Normal',       
@@ -61,8 +61,8 @@ class CreatePenimbangansTable extends Migration
          DB::table('penimbangan')->insert([
             'id' =>3,
             'nik_anak'=>'3510210102990013',
-            'berat_badan' =>'12',       
-            'tinggi_badan' =>'10',       
+            'berat_badan' =>'4.50',       
+            'tinggi_badan' =>'56',       
             'lingkar_kepala' =>'2',       
             'status_bb_u' =>'Berat Badan Normal',       
             'status_tb_u' =>'Tinggi Badan Normal',       

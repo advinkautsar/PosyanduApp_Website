@@ -11,6 +11,7 @@ class Anak extends Model
     protected $table = "anak";
     protected $primaryKey = 'nik_anak';
     protected $fillable = [
+        'nik_anak',
         'orangtua_id',
         'no_kartu',
         'nama_anak',

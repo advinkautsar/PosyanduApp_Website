@@ -27,6 +27,7 @@ class CreateOrangtuasTable extends Migration
             $table->string("alamat");
             $table->string("rt");
             $table->string("rw");
+            $table->enum('status_persetujuan',['disetujui','belum disetujui'])->default('belum disetujui');
             $table->foreign('user_id')->references('id')->on('user')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('posyandu_id')->references('id')->on('posyandu')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('desa_kelurahan_id')->references('id')->on('desa_kelurahan')->onDelete('cascade')->onUpdate('cascade');
@@ -46,7 +47,8 @@ class CreateOrangtuasTable extends Migration
             'nama_ibu' =>'Berdhika pratama',
             'alamat' =>'jl. blimbing 1',        
             'rt' =>'01',        
-            'rw' =>'03',             
+            'rw' =>'03',
+            'status_persetujuan'=>'disetujui',             
         ]);
 
         DB::table('orangtua')->insert([
@@ -61,7 +63,9 @@ class CreateOrangtuasTable extends Migration
             'nama_ibu' =>'Berliandina',
             'alamat' =>'jl. blimbing 1',        
             'rt' =>'01',        
-            'rw' =>'03',             
+            'rw' =>'03',      
+            'status_persetujuan'=>'disetujui',             
+
         ]);
 
         DB::table('orangtua')->insert([
@@ -76,7 +80,9 @@ class CreateOrangtuasTable extends Migration
             'nama_ibu' =>'tasya farsha',          
             'alamat' =>'jl. blimbing 1',        
             'rt' =>'01',        
-            'rw' =>'03',             
+            'rw' =>'03',
+            'status_persetujuan'=>'disetujui',             
+
         ]);
 
         DB::table('orangtua')->insert([
@@ -91,7 +97,9 @@ class CreateOrangtuasTable extends Migration
             'nama_ibu' =>'Mbak Bondol',          
             'alamat' =>'jl. blimbing 1',        
             'rt' =>'01',        
-            'rw' =>'03',             
+            'rw' =>'03',
+            'status_persetujuan'=>'disetujui',             
+
         ]);
     }
 
