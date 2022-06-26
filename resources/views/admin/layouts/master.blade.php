@@ -1,48 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Admin | Dashboard</title>
 
-  <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  {{-- <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css') }}"> --}}
-  <!-- Theme style -->
-  <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard &mdash; Arfa</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+        integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
+        crossorigin="anonymous" />
+
+    <link rel="stylesheet" href="../public/vendor/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../public/vendor/themify-icons/themify-icons.css">
+    <link rel="stylesheet" href="../public/vendor/perfect-scrollbar/css/perfect-scrollbar.css">
+
+    <!-- CSS for this page only -->
+    @stack('css')
+    <!-- End CSS  -->
+
+    <link rel="stylesheet" href="../public/assets/css/style.min.css">
+    <link rel="stylesheet" href="../public/assets/css/style.css">
+    <link rel="stylesheet" href="../public/assets/css/bootstrap-override.min.css">
+    <link rel="stylesheet" id="theme-color" href="../public/assets/css/dark.min.css">
 </head>
 
-<body class="hold-transition sidebar-mini">
+<body>
+    <div id="app">
+        <div class="shadow-header"></div>
+        @include('admin.layouts.navbar')
+        @include('admin.layouts.sidebar')   
 
-<!-- Site wrapper -->
-<div class="wrapper">
+        @yield('content')   
 
-  <!-- Navbar -->
-    @include('admin.layouts.navbar')
-  <!-- /.navbar -->
+        @include('admin.layouts.setting')
+        <footer>
+            Copyright © 2022 &nbsp 
+        <div class="overlay action-toggle">
+        </div>
+    </div>
+    <script src="../public/vendor/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    <script src="../public/vendor/perfect-scrollbar/dist/perfect-scrollbar.min.js"></script>
 
-  <!-- Main Sidebar Container -->
-   @include('admin.layouts.sidebar')
-
-  <!-- Content Wrapper. Contains page content -->
-  @yield('content')
-  <!-- /.content-wrapper -->
-
-
-
-  <!-- /.control-sidebar -->
-</div>
-<!-- ./wrapper -->
-
-<!-- jQuery -->
-<script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
-<!-- Bootstrap 4 -->
-<script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-<!-- AdminLTE App -->
-<script src="{{ asset('dist/js/adminlte.min.js') }}"></script>
-<!-- AdminLTE for demo purposes -->
-{{-- <script src="dist/js/demo.js"></script> --}}
+    <!-- js for this page only -->
+    @stack('js')
+    <!-- ======= -->
+    <script src="../public/assets/js/main.js"></script>
+    <script>
+        Main.init()
+    </script>
 </body>
+
 </html>
