@@ -1,32 +1,32 @@
-<nav class="main-header navbar navbar-expand navbar-white navbar-light">
-    <!-- Left navbar links -->
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-      </li>
-    </ul>
-    <!-- Right navbar links -->
-    <ul class="navbar-nav ml-auto">
-      <!-- Navbar Search -->
-      <li class="nav-item">
-        <a class="nav-link" data-widget="navbar-search" href="#" role="button">
-          <i class="fas fa-search"></i>
-        </a>
-        <div class="navbar-search-block">
-          <form class="form-inline">
-            <div class="input-group input-group-sm">
-              <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-              <div class="input-group-append">
-                <button class="btn btn-navbar" type="submit">
-                  <i class="fas fa-search"></i>
-                </button>
-                <button class="btn btn-navbar" type="button" data-widget="navbar-search">
-                  <i class="fas fa-times"></i>
-                </button>
-              </div>
+<header class="header-navbar fixed">
+            <div class="toggle-mobile action-toggle"><i class="fas fa-bars"></i></div>
+            <div class="header-wrapper">
+                <div class="header-left">
+                    <div class="theme-switch-icon"></div>
+                </div>
+                <div class="header-content">
+                    <div class="dropdown dropdown-menu-end">
+                        <a href="#" class="user-dropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            <div class="label">
+                                <span></span>
+                                <div>{{ $LoggedUserInfo['nama_pengguna'] }}</div>
+                            </div>
+                            <img class="img-user" src="../public/assets/images/avatar1.png" alt="user"srcset="">
+                        </a>
+                        <ul class="dropdown-menu small">
+                            <!-- <li class="menu-header">
+                                <a class="dropdown-item" href="#">Notifikasi</a>
+                            </li> -->
+                            <li class="menu-content ps-menu">
+                                <a href="{{ route('autentikasi.logout') }}">
+                                    <div class="description">
+                                        <i class="ti-power-off"></i> Logout
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
             </div>
-          </form>
-        </div>
-      </li>
-    </ul>
-  </nav>
+        </header>
